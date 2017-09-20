@@ -6591,10 +6591,10 @@ button.close {
   position: relative;
   width: 100%;
   overflow: hidden;
-  min-height: 100%;
+  min-height: 350px !important;
  }
  .crsl {
-  min-height: 100%;
+  min-height: 350px !important;
  }
  .footer p {
      color: #fff;

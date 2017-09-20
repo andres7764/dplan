@@ -1,7 +1,7 @@
 var cviaja = angular.module('dplan',["ngRoute","routes","services"]);
    
 cviaja.controller('activitiesCtrl',['activities','$scope','$q','$http','$timeout','$window','$location','$rootScope',function(activities,$scope,$q,$http,$timeout,$window,$location,$rootScope){
-    document.title = "DPlan, Planes unicos cerca a ti";
+    document.title = "DPlan, Planes unicos cerca a Bogotá";
   $scope.activities = [];
   $scope.contact = {};
   activities.doRequest('/getActivities',function(res){
@@ -26,6 +26,7 @@ cviaja.controller('activitiesCtrl',['activities','$scope','$q','$http','$timeout
       $scope.contact = {};
    })
   }
+
   function message(title,comment){
    swal(title,comment, "success");
   }
@@ -34,7 +35,7 @@ cviaja.controller('activitiesCtrl',['activities','$scope','$q','$http','$timeout
 
 cviaja.controller('activityCtrl', ['activities','$scope','$timeout','$routeParams','$rootScope','$location',function(activities,$scope,$timeout,$routeParams,$rootScope,$location) {
         $rootScope.checkOut = [];
-       let a = new Date();
+       var a = new Date();
         $scope.validSince = a.getFullYear()+"-"+a.getMonth()+"-"+a.getDate();
        var directionsService,directionsDisplay;
        var activity = ($routeParams.activity.split("_").length === 2 )? $routeParams.activity.split("_") : window.location = "/";
@@ -178,7 +179,7 @@ cviaja.controller('activityCtrl', ['activities','$scope','$timeout','$routeParam
 
   cviaja.controller('responseCtrl',['payment','$scope','$window','$location', function(payment,$scope,$window,$location){
         $scope.resultTransaction = {};
-        let info = JSON.parse(localStorage.getItem("checkOut"));
+        var info = JSON.parse(localStorage.getItem("checkOut"));
         var ref_payco = $location.search().ref_payco;
         payment.getInfoTransaction(ref_payco,function(response){
           $scope.resultTransaction = response;

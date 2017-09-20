@@ -45,7 +45,7 @@
 	})
 
 	.factory('payment',function($http,$q){
-		let urlapp = "https://api.secure.payco.co/validation/v1/reference/";
+		var urlapp = "https://api.secure.payco.co/validation/v1/reference/";
 	 function getEPaycoTransaction(idEp){
 	   var defered = $q.defer();
 	   var promise = defered.promise;
