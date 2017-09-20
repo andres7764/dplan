@@ -31,12 +31,6 @@
   <title>.: DPlan - Inicio :.</title>
   <!-- Latest compiled and minified JavaScript -->
   <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="../css/style.css" media="none" onload="if(media!='all')media='all'">
-  <link rel="stylesheet" type="text/css" href="../css/animate.css">
-  <link rel="stylesheet" type="text/css" href="../css/layout.css" media="none" onload="if(media!='all')media='all'">
-  <link rel="stylesheet" type="text/css" href="../css/sweetalert2.min.css" media="none" onload="if(media!='all')media='all'">
-  <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" media="none" onload="if(media!='all')media='all'">
-  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300,700' rel='stylesheet' type='text/css' media="none" onload="if(media!='all')media='all'">
   <!-- Chatra {literal} -->
 <script async>
     (function(d, w, c) {
@@ -94,10 +88,9 @@ src="https://www.facebook.com/tr?id=100840487318857&ev=PageView&noscript=1"
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav link-effect" style="float:right;">
             <li><a href="#planes">¿Que hacer?</a></li>
-            <li><a data-toggle="modal" data-target="#largeModal">Nosotros</a></li>
-            <li><a data-toggle="modal" data-target="#formBePart">Cargar mi plan</a></li>
             <li><a href="#subscribe">Suscríbete</a></li>
-            <!--<li><a href="#!/blog">Blog</a></li>-->
+            <!--<li><a href="/mapa">Ver en mapa</a></li>
+                <li><a href="#!/blog">Blog</a></li>-->
           </ul>
         </div>
       </div>
@@ -107,18 +100,27 @@ src="https://www.facebook.com/tr?id=100840487318857&ev=PageView&noscript=1"
   <div ng-view></div>
 <!-- footer -->
  <div class="footer">
-  <div class="container">
-    <div class="col-lg-2 col-md-2 col-xs-3 footer-w3ls2">
+  <div class="container-fluid">
+    <div class="col-lg-3 col-md-3 col-xs-5 footer-w3ls2" style="padding-top: 7px">
       <div class="secure"></div>
     </div>
-    <div class="col-lg-9 col-md-9 col-xs-8 footer-w3ls1">
-      <p style="padding-top: 23px;float: left;">&copy; 2017 DPlan. todos los derechos reservados | <a href="https://dplan.co/" target="_blank">Dplan</a></p>
+    <div class="col-lg-9 col-md-9 col-xs-7 footer-w3ls2" style="padding:20px 5px 0px 0px; text-align: left">
+      <h5 style="color: #fff">Enlaces de interés</h5>
+      <hr class="mini">
+      <p data-toggle="modal" data-target="#largeModal">Sobre nosotros </p>
+      <p data-toggle="modal" data-target="#formBePart">Cargar mis planes en Dplan<a href="https://dplan.co/" target="_blank"></a></p>
+      <p>Suscribirse al<a href="./#subscribe"> boletín</a></p>
+      <p>Mapa del <a href="https://dplan.co/sitemap.xml" target="_blank">sitio</a></p>
       <ul class="bottom-links" style="float: left; padding-top: 23px;">
         <li><a target="_blank" href="https://www.facebook.com/DPl4n/"><i class="fa fa-facebook"></i></a></li>
         <li><a target="_blank" href="https://twitter.com/dplan_"><i class="fa fa-twitter"></i></a></li>
       </ul>
+
     </div>
-    <div class="col-lg-1 col-md-1 col-xs-1 footer-w3ls2" style="padding:20px 5px 0px 0px">
+  </div>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12 footer-w3ls1">
+      <p style="padding-top: 20px;text-align: center;">&copy; 2017 DPlan. todos los derechos reservados | <a href="https://dplan.co/" target="_blank">Dplan</a></p>
     </div>
   </div>
 </div>
@@ -183,18 +185,22 @@ src="https://www.facebook.com/tr?id=100840487318857&ev=PageView&noscript=1"
   </div>
  </div>
 </div>
-<!-- End Modal header -->
+<!-- End Modal contact -->
 </body>
-
+  <link rel="stylesheet" type="text/css" href="../css/animate.css">
+  <link rel="stylesheet" type="text/css" href="../css/style.css" media="none" onload="if(media!='all')media='all'">
+  <link rel="stylesheet" type="text/css" href="../css/layout.css" media="none" onload="if(media!='all')media='all'">
+  <link rel="stylesheet" type="text/css" href="../css/sweetalert2.min.css" media="none" onload="if(media!='all')media='all'">
+  <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" media="none" onload="if(media!='all')media='all'">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300,700' rel='stylesheet' type='text/css' media="none" onload="if(media!='all')media='all'">
 <script src="../js/jqueryFinal.min.js"></script>
-<!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5955690e03bcd486" ></script>-->
 <script src="../js/bootstrap.min.js"></script> <!-- Twitter Feed Options -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClaLrPzehTnyhMGE8OT-Kjawkb2XTiGe4&libraries=places" async></script>
 <script src="../js/angular.min.js"></script>
 <script src="../js/angular-route.min.js"></script>
 <script src="../js/routes.js"></script>
-<script src="../js/services.js"></script>
-<script src="../js/app.js"></script>
-<script src="../js/script.js" async></script>
+<script src="../jsmin/services.js"></script>
+<script src="../jsmin/app.js" ></script>
+<!--<script src="../js/script.js" async></script>-->
 <script src="../js/sweetalert2.min.js" async></script>
 </html>
