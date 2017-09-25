@@ -23,17 +23,18 @@
         <p class="iconsP"><i class="fa fa-road"></i><b> Salida: </b> {{activity.exitBy}}</p>
         <p class="iconsP"><i class="fa fa-clock-o"></i><b style="padding-left: 2px;"> Tiempo aprox: </b> {{activity.distanceTime}}</p>
         <p class="iconsP"><i class="fa fa-sort"></i><b style="padding-left: 2px;"> Categoría: </b> {{activity.categories}}</p>
+        <p class="iconsP"><i class="fa fa-users"></i><b> Cupo mínimo:</b>&nbsp; {{activity.availablePersons}}</p>
         <p class="iconsP"><i class="fa fa-money"></i><b> Precio:</b>&nbsp; {{activity.mount | currency: $:0}}</p>
         <p ng-if="activity.rnt !== ''" ng-click="openRnt(activity.imgRnt)"><b>RNT:</b> <abbr title="Registro nacional de turismo">{{activity.rnt}}</abbr> </p>
         <div class="row">
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-4"> 
             <label for="date">Selecciona el día:</label>
             <input id="dateR" class="form-control" type="date" name="dateReserv" min="{{validSince}}" autofocus="autofocus">
           </div>
           <div class="col-md-2">
             <label for="sel1">Cupos:</label>
             <select class="form-control" ng-change="checkCupo($index)" ng-model="vm.cupos[$index]" id="sel1" style="width: 60px">
-             <option ng-repeat="n in range(1,activity.availablePersons)">{{n}}</option>
+             <option ng-repeat="n in range(activity.availablePersons,20)">{{n}}</option>
             </select>
           </div>
           <div class="col-md-3" style="padding-top: 20px;text-align: center;color: #64dd17">
@@ -57,7 +58,7 @@
        <div class="tab-content">
         <div class="tab-pane active" ng-show="tab === 1">
           <div>{{activity.description}} </div><br>
-          <div>El plan incluye {{activity.detailPlan}} </div>
+          <div><b>El plan incluye:</b> {{activity.detailPlan}} </div>
         </div>
        </div>
         <div class="tab-pane" ng-show="tab === 2" style="padding: 7px;text-align: justify;">

@@ -109,6 +109,7 @@ src="https://www.facebook.com/tr?id=100840487318857&ev=PageView&noscript=1"
       <hr class="mini">
       <p data-toggle="modal" data-target="#largeModal">Sobre nosotros </p>
       <p data-toggle="modal" data-target="#formBePart">Cargar mis planes en Dplan<a href="https://dplan.co/" target="_blank"></a></p>
+      <p data-toggle="modal" data-target="#corporativePlans">Planes corporativos<a href="https://dplan.co/" target="_blank"></a></p>
       <p>Suscribirse al<a href="./#subscribe"> boletín</a></p>
       <p>Mapa del <a href="https://dplan.co/sitemap.xml" target="_blank">sitio</a></p>
       <ul class="bottom-links" style="float: left; padding-top: 23px;">
@@ -176,6 +177,48 @@ src="https://www.facebook.com/tr?id=100840487318857&ev=PageView&noscript=1"
         <span class="input-group-addon" id="sizing-addon1">
         <i class="fa fa-pencil-square-o bigicon"></i></span>
         <textarea ng-model="contact.description" style="min-height: 150px" class="form-control" id="message" name="message" placeholder="Escribenos sobre tus actividades" rows="7" required></textarea>
+      </div>
+       <button style="margin-top: 7px; width: 100%" type="submit" ng-disabled="loginform.$invalid" ng-click="sendNewContact()" class="btn btn-primary btn-lg">Contactar <i class="fa fa-paper-plane"></i> </button>
+      </form>
+      </div>
+     </div>
+    </div>
+  </div>
+ </div>
+</div>
+<!-- End Modal contact -->
+
+<!-- Modal Contact -->
+<div class="modal fade" id="corporativePlans" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true" ng-controller="activitiesCtrl">
+ <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+     </div>
+    <div class="modal-body">
+     <div class="row">
+      <div class="col-lg-6 col-md-6 col-xs-12">
+        <p style="font-size: 20px;text-align: center;padding: 10px;">Estamos trabajando para brindar este servicio muy pronto, sin embargo déjanos tus datos y agendaremos una reunión lo mas pronto posible.</p>
+        <div style="background-image: url(https://s3-eu-west-1.amazonaws.com/dplan/working.jpg);background-size:cover;height:200px" ></div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-xs-12" style="padding: 12px">
+      <form name="loginform">
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user bigicon"></i></span>
+        <input type="text" ng-model="contact.name" class="form-control" placeholder="Tu nombre" aria-describedby="sizing-addon1" required>
+      </div>
+      <div class="input-group input-group-lg" style="padding-top: 7px">
+        <span class="input-group-addon" id="sizing-addon1">@</span>
+        <input type="email" ng-model="contact.mail" class="form-control" placeholder="Correo" aria-describedby="sizing-addon1" required>
+      </div>
+      <div class="input-group input-group-lg" style="padding-top: 7px">
+        <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
+        <input type="text" ng-model="contact.phone" class="form-control" placeholder="Celular (Opcional)" aria-describedby="sizing-addon1">
+      </div>
+      <div class="input-group input-group-lg" style="padding-top: 7px">
+        <span class="input-group-addon" id="sizing-addon1">
+        <i class="fa fa-pencil-square-o bigicon"></i></span>
+        <textarea ng-model="contact.description" style="min-height: 150px" class="form-control" id="message" name="message" placeholder="Cuéntanos un poco sobre tu empresa" rows="7" required></textarea>
       </div>
        <button style="margin-top: 7px; width: 100%" type="submit" ng-disabled="loginform.$invalid" ng-click="sendNewContact()" class="btn btn-primary btn-lg">Contactar <i class="fa fa-paper-plane"></i> </button>
       </form>

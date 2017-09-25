@@ -35,13 +35,18 @@ cviaja.controller('activitiesCtrl',['activities','$scope','$q','$http','$timeout
 
 cviaja.controller('activityCtrl', ['activities','$scope','$timeout','$routeParams','$rootScope','$location',function(activities,$scope,$timeout,$routeParams,$rootScope,$location) {
         $rootScope.checkOut = [];
+        console.log("estoes"+typeof($scope.validSince));
        var a = new Date();
+
         $scope.validSince = a.getFullYear()+"-"+a.getMonth()+"-"+a.getDate();
+        console.log("estoes"+typeof($scope.validSince));
        var directionsService,directionsDisplay;
        var activity = ($routeParams.activity.split("_").length === 2 )? $routeParams.activity.split("_") : window.location = "/";
        var idS = (activity[1].length === 24)?activity[1]:window.location = "/";
 
   activities.doRequest('/getActivity?id='+idS,function(res){
+        alert("estoes");
+    
     $rootScope.activity = res.data.activity[0];
     $rootScope.lengthPagerImages = $rootScope.activity.carousel.length;
     $scope.tab = 1;
@@ -82,6 +87,10 @@ cviaja.controller('activityCtrl', ['activities','$scope','$timeout','$routeParam
         });
     };
         
+$scope.validDate = function(){
+
+}
+
   $scope.checkCupo = function(index){
     $rootScope.checkOut = [];
     localStorage.setItem("checkOut",null);
