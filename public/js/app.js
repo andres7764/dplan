@@ -1,6 +1,7 @@
 var cviaja = angular.module('dplan',["ngRoute","routes","services"]);
    
 cviaja.controller('activitiesCtrl',['activities','$scope','$q','$http','$timeout','$window','$location','$rootScope',function(activities,$scope,$q,$http,$timeout,$window,$location,$rootScope){
+  $scope.search = "Autopista norte";
     document.title = "DPlan, Planes unicos cerca a Bogotá";
   $scope.activities = [];
   $scope.contact = {};
@@ -20,6 +21,12 @@ cviaja.controller('activitiesCtrl',['activities','$scope','$q','$http','$timeout
       $scope.activities.mail = "";
     })
   }
+
+  $scope.searcSite = function(op){
+    console.log(op);
+    $scope.search = op;
+  }
+
   $scope.sendNewContact = function(){
     activities.doPostRequest('/saveContact',$scope.contact,function(response){
       message("¡Bienvenido a DPlan!","Ya guardamos tus datos nos pondremos en contacto contigo.");

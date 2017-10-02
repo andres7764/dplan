@@ -1,80 +1,94 @@
-<div>
- <div class="top-bar" style="margin-top: 80px;">
-	<div class="container">
-		<ul class="top-contacts">
-			<li class="top-unhover" style="margin-right: 6px"><p class="res"><span class="fa fa-phone-square" aria-hidden="true"></span><a href="https://dev-web.whatsapp.com/api/send?phone=573016227485" target="_blank"> +057 301 6227485</a></p>
-			<li class="top-hover"><p class="res"><span class="fa fa-envelope" aria-hidden="true"></span> <a href="mailto:contacto@dplan.co">contacto@dplan.co</a></p>
-		</ul>
-		<div class="clearfix"></div>
-	</div>
- </div>
-</div>
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
+<div class="container-fluid">
+  <div class="row" style="padding: 3px;margin-top: 87px">
+    <div class="col-lg-9 col-md-9 col-xs-12">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="https://s3-eu-west-1.amazonaws.com/dplan/banners/b1.jpg" class="animated pulse crsl" alt="Los Angeles">
-      <a href="http://localhost:5500/#!/catalogo/Pasadia-por-finca-en-la-vega_59bbfe8b2e1d5c0630f8e2d6" class="btn btnfix">Ver plan</a>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="../img/a.jpg" alt="...">
+          <div class="carousel-caption">
+            <h3>Compra tus tiquetes para el canopy mas largo de Colombia</h3>
+          </div>
+        </div>
+        <div class="item">
+          <img src="../img/b.jpg" alt="...">
+          <div class="carousel-caption">
+            <h3>Encuentra todo tipo de actividades en Dplan</h3>
+          </div>
+        </div>
+        <div class="item">
+          <img src="../img/c.jpg" alt="...">
+          <div class="carousel-caption">
+            <h3>Ven y prepara tu cerveza con nosotros</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+     </div>  
     </div>
-    <div class="item">
-      <img src="https://s3-eu-west-1.amazonaws.com/dplan/banners/b2.jpg" class="animated bounceInRight crsl" alt="Chicago">
-      <a href="http://localhost:5500/#!/catalogo/Ruta-Extrema-La-ruta-del-tigre_59994071510ec3430ee16f41" class="btn btnfix">Ver plan</a>
+  <div class="col-lg-3 col-md-3 col-xs-12">
+    <div class="row" style="padding: 3px;">
+      <div style="background-image:url(../img/d.jpg);" class="pillsE col-lg-12 col-md-12 col-xs-12"></div>
+      <a data-toggle="modal" data-target="#corporativePlans"><h3 class="textE">Personaliza tu plan</h3></a>
     </div>
-    <div class="item">
-      <img src="https://s3-eu-west-1.amazonaws.com/dplan/banners/b3.jpg" class="animated bounceInLeft crsl" alt="New York">
-      <a href="http://localhost:5500/#!/catalogo/Parapente-SopCundinamarca_59993a8d510ec3430ee16f3b" class="btn btnfix">Ver plan</a>
+    <div class="row" style="padding: 3px;">
+            <div style="background-image:url(../img/e.jpg);" class="pillsE col-lg-12 col-md-12 col-xs-12"></div>
+      <a data-toggle="modal" data-target="#corporativePlans"><h3 class="textE">Planes para empresas</h3></a>
+    </div>
+    <div class="row" style="padding: 3px;">
+            <div style="background-image:url(../img/f.jpg);" class="pillsE col-lg-12 col-md-12 col-xs-12"></div>
+      <a href="#planes"><h3 class="textE">Ver todos los planes</h3></a>
     </div>
   </div>
 </div>
-
 <div id="planes" class="container-fluid">
- <div class="row" style="background-color: rgba(51, 51, 49, 0.08);">
-  	<div style="padding-left: 23px;padding-top: 23px">
-	   <div class="title">¿Qué plan quieres realizar?</div>
-	   <hr><br>
-	 </div>
-   <div class="col-lg-6 col-md-3 col-xs-12">
-  	<h4 style="padding: 20px">Buscar por:</h4>
-   </div>
-   <div class="col-lg-2 col-md-9 col-xs-6" style="padding: 7px">
-  	<h6 style="font-size: 10px">Saliendo por:</h6>
-  	<select style="padding: 5px" class="form-control" ng-model="search">
-  		<option value="">Todos</option>
-  		<option>Autopista norte</option>
-  		<option>Calle 80</option>
-  		<option>Calle 13</option>
-  		<option>Autopista sur</option>
-  	</select>
-   </div>
-   <div class="col-lg-2 col-md-6 col-xs-6" style="padding: 7px">
-  	<h6 style="font-size: 10px">Categoria:</h6>
-  	<select class="form-control" ng-model="searchPlaces">
-  		<option value="">Todas</option>
-  		<option>Escape 1 día</option>
-  		<option>Extremo</option>
-  		<option>Pasadía</option>
-  		<option>Biciturismo</option>
-  		<option>Pesca</option>
-  		<option>Gastronómico</option>
-  		<option>Talleres teorico-Practicos</option>
-  	</select>
-   </div>
-   <div class="col-lg-2 col-md-6" style="padding: 7px">
-  	<h6 style="font-size: 10px">Ciudad:</h6>
-  	<select class="form-control">
-  		<option>Bogotá</option>
-  		<option>Medellín - Proximamente</option>
-  	</select>
-   </div>   
-  </div>
   <div class="row" style="padding: 20px 10px 0px 10px">
+    <div class="col-lg-3 col-md-3 col-sm-6 hidden-xs animated rollIn completeF" style="padding-bottom: 30px;background-color: rgba(51, 51, 49, 0.08);padding: 7px">
+      <h4 style="padding: 10px"><b>Busca tu plan.</b></h4><br>
+    <h5><b>Saliendo por:</b></h5>
+    <hr class="mini">
+    <select style="padding: 5px" class="form-control" ng-model="search">
+      <option value="">Todos</option>
+      <option>Autopista norte</option>
+      <option>Calle 80</option>
+      <option>Calle 13</option>
+      <option>Autopista sur</option>
+    </select>
+  <h5><b>Categoria:</b></h5>
+  <hr class="mini">
+    <select  class="form-control" ng-model="searchPlaces">
+      <option value="">Todas</option>
+      <option>Escape 1 día</option>
+      <option>Extremo</option>
+      <option>Pasadía</option>
+      <option>Biciturismo</option>
+      <option>Pesca</option>
+      <option>Gastronómico</option>
+      <option>Talleres teorico-Practicos</option>
+    </select>
+    <h5><b>Ciudad:</b></h5>
+    <hr class="mini">
+    <select class="form-control">
+      <option>Bogotá</option>
+      <option>Medellín - Proximamente</option>
+      <option>Cali - Proximamente</option>
+      <option>Villavicencio - Proximamente</option>
+    </select>
+    </div>
   <div ng-repeat="activity in activities | orderBy: 'order' | filter:search | filter:searchPlaces" class="col-lg-3 col-md-3 col-sm-6 col-xs-12 animated rollIn completeF" style="padding-bottom: 30px;">
 	 <div class="thumbnail wrp" style="min-height: 360px;cursor:pointer" ng-click="irA(activity._id,activity.name)">
 	 	<div class="tabMain">{{activity.location.name}}</div>
@@ -83,7 +97,7 @@
         <h3 class="title"><b>{{activity.name}}</b></h3>
 		<hr class="mini">
         <span class="completeF ptop glyphicon" style="color:#aaa;font-size: 12px!important; height: 60px;overflow: hidden;"> {{activity.description}}</span>
-		<h5 style="position: absolute;left: 10px; bottom: 12px;color: #64dd17;"><b>Desde {{activity.mount | currency: $:0}}</b></h5>
+		<h5 style="position: absolute;left: 10px; bottom: 12px;color: #64dd17;"><b>{{activity.mount | currency: $:0}}</b></h5>
 		<button ng-click="irA(activity._id,activity.name)" type="button" class="btn" style="position: absolute;right: 10px; bottom: 12px">Ver más</button>
       </div>
      </div>
@@ -150,3 +164,14 @@
 	</div>
    </section>
    <br><br>
+   <script type="text/javascript">
+     window.onload = function(){ 
+         $('.owl-carousel').owlCarousel({
+          items:4,
+          lazyLoad:true,
+          loop:true,
+          margin:10
+        });
+    }
+
+   </script>
