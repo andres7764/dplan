@@ -59,6 +59,7 @@ module.exports = function(app) {
 //    app.post('/uploadActivities',controllerActivities.setActivities);
     app.get('/getActivities',controllerActivities.getActivities);
     app.get('/getActivity',controllerActivities.getActivity);
+    app.post('/getReferals',controllerActivities.getReferrals);
 
     // Checkouts
     app.post('/saveBooking', controllerReservas.saveBooking);

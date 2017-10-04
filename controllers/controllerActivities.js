@@ -38,6 +38,12 @@ exports.updateQtyActivity = function(req,res) {
     });
 };
 
+exports.getReferrals = function(req,res){
+    Activities.find({'categories':req.body.categories,'isActive':true},'url name distanceTime',function(err,response) {
+      if (err) { return res.status(500).send(err.message); }
+      return res.status(200).send({data: response});        
+    }).limit(4);
+}
 //Helpers
 function assingUrl(id, cb) {
     var urlBase = 'https://dplan.co/catalogo/#!/catalogo/' + id;
