@@ -28,6 +28,19 @@
       	   })
       	   return promise;
 		}
+		function doGetReferals(URL,value){
+		  var defered = $q.defer();
+		  var promise = defered.promise;
+		   $http.defaults.headers.post["Content-Type"] = "application/json";
+		   $http.post(URL,value)
+		   .then(function(result){
+        	  defered.resolve(result.data);
+      	   })
+      	   .catch(function(err){
+      	   	 deferred.reject(err);
+      	   })
+      	   return promise;	
+		}
 		return {
 			doRequest: function(data,callback){
 		      doGetRequest(data)
@@ -41,6 +54,12 @@
 		      	callback(res);
 		      });
 			},
+			getReferals: function(URL,value,callback){
+			  doGetReferals(URL,value)
+			  .then(function(res){
+			    callback(res);
+			  });
+			}
 		}
 	})
 
@@ -76,5 +95,20 @@
  	 	  saveReserv(data);
  	 	}
  	 }
+	})
+
+	.factory('helpers',function($rootScope) {
+		function createUrl(id,title){
+		  var letra = title.replace(/[^a-zA-Z 0-9.]+/g,'');
+	       	  letra = letra.replace(/ /g,'+');
+    	  $rootScope.urlFinal = '/catalogo/'+letra+"_"+id;
+		}
+		return {
+			createUrl: function(id,title,callback){
+			 createUrl(id,title);
+			 callback();
+			 //setTimeout(function(){ callback(); },500);
+			}			
+		}
 	})
 })();

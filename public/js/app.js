@@ -1,6 +1,6 @@
 var cviaja = angular.module('dplan',["ngRoute","routes","services"]);
    
-cviaja.controller('activitiesCtrl',['activities','$scope','$q','$http','$timeout','$window','$location','$rootScope',function(activities,$scope,$q,$http,$timeout,$window,$location,$rootScope){
+cviaja.controller('activitiesCtrl',['activities','helpers','$scope','$q','$http','$window','$location','$rootScope',function(activities,helpers,$scope,$q,$http,$window,$location,$rootScope){
   $scope.search = "Autopista norte";
     document.title = "DPlan, Planes unicos cerca a Bogotá";
   $scope.activities = [];
@@ -9,11 +9,9 @@ cviaja.controller('activitiesCtrl',['activities','$scope','$q','$http','$timeout
     $scope.activities = res.data.activities;
   });
   $scope.irA = function(id,title){
-    $rootScope.idSearch = id;
-    var letra = title.replace(/[^a-zA-Z 0-9.]+/g,'');
-      letra = letra.replace(/ /g,'-');
-      $rootScope.urlFinal = '/catalogo/'+letra+"_"+id;
-      $location.url('/catalogo/'+letra+"_"+id);
+    helpers.createUrl(id,title,function(res){
+      $location.url($rootScope.urlFinal);
+    })      
   }
   $scope.subscripbeUser = function(){
     activities.doPostRequest('/saveContact',{'mail': $scope.activities.mail},function(response){
@@ -23,7 +21,6 @@ cviaja.controller('activitiesCtrl',['activities','$scope','$q','$http','$timeout
   }
 
   $scope.searcSite = function(op){
-    console.log(op);
     $scope.search = op;
   }
 
@@ -40,20 +37,16 @@ cviaja.controller('activitiesCtrl',['activities','$scope','$q','$http','$timeout
 }]);
 
 
-cviaja.controller('activityCtrl', ['activities','$scope','$timeout','$routeParams','$rootScope','$location',function(activities,$scope,$timeout,$routeParams,$rootScope,$location) {
+cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams','$rootScope','$location',function(activities,helpers,$scope,$routeParams,$rootScope,$location) {
         $rootScope.checkOut = [];
-        console.log("estoes"+typeof($scope.validSince));
+        $rootScope.referals = [];
        var a = new Date();
-
         $scope.validSince = a.getFullYear()+"-"+a.getMonth()+"-"+a.getDate();
-        console.log("estoes"+typeof($scope.validSince));
        var directionsService,directionsDisplay;
        var activity = ($routeParams.activity.split("_").length === 2 )? $routeParams.activity.split("_") : window.location = "/";
        var idS = (activity[1].length === 24)?activity[1]:window.location = "/";
 
   activities.doRequest('/getActivity?id='+idS,function(res){
-        alert("estoes");
-    
     $rootScope.activity = res.data.activity[0];
     $rootScope.lengthPagerImages = $rootScope.activity.carousel.length;
     $scope.tab = 1;
@@ -62,11 +55,32 @@ cviaja.controller('activityCtrl', ['activities','$scope','$timeout','$routeParam
     initAutocomplete($rootScope.activity.location);
     if ($rootScope.activity.legalInfo !== undefined) {
       $rootScope.activity.legalInfo = $rootScope.activity.legalInfo.split("&");
+      $rootScope.activity.detailPlan = $rootScope.activity.detailPlan.split("&");
      for(a=0;a<$rootScope.activity.legalInfo.length;a++ ){
        $rootScope.activity.legalInfo[a].replace("&"," ");
      }
+     for(a=0;a<$rootScope.activity.detailPlan.length;a++ ){
+      $rootScope.activity.detailPlan[a].replace("&"," ");}
     }
+    ///////////////////////////////////////////////////////////////////////////
+    if($rootScope.activity.categories.indexOf(",") !== -1 ){ 
+      $rootScope.catFind = $rootScope.activity.categories.split(",")
+      $rootScope.catFind = $rootScope.catFind[0];
+    } else { 
+      $rootScope.catFind = $rootScope.activity.categories;
+    }
+
+    activities.getReferals('/getReferals',{'categories':$rootScope.catFind},function(res){
+      $rootScope.referals = res.data;
+    });
+
+    $scope.irA = function(id,title){
+      helpers.createUrl(id,title,function(res){
+      $location.url($rootScope.urlFinal);
+    })      
+  }
   });
+  
     function initAutocomplete(location) {
         var latLng  = {lat: parseFloat(location.lat), lng: parseFloat(location.lng)};
             $scope.map = new google.maps.Map(document.getElementById('map'), {
@@ -94,28 +108,27 @@ cviaja.controller('activityCtrl', ['activities','$scope','$timeout','$routeParam
         });
     };
         
-$scope.validDate = function(){
+    $scope.validDate = function(){
+    }
 
-}
+    $scope.checkCupo = function(index){
+      $rootScope.checkOut = [];
+      localStorage.setItem("checkOut",null);
+      $rootScope.activity.qtyBuyed = document.getElementById('sel1').value;
+      $rootScope.activity.dateReserv = document.getElementById('dateR').value;
+      $rootScope.activity.total = $rootScope.activity.mount * $rootScope.activity.qtyBuyed;
+      localStorage.setItem("checkOut",JSON.stringify($rootScope.activity));
+    };
 
-  $scope.checkCupo = function(index){
-    $rootScope.checkOut = [];
-    localStorage.setItem("checkOut",null);
-    $rootScope.activity.qtyBuyed = document.getElementById('sel1').value;
-    $rootScope.activity.dateReserv = document.getElementById('dateR').value;
-    $rootScope.activity.total = $rootScope.activity.mount * $rootScope.activity.qtyBuyed;
-    localStorage.setItem("checkOut",JSON.stringify($rootScope.activity));
-  };
-
-        $scope.reservA = function(value) {
+    $scope.reservA = function(value) {
           if($rootScope.activity.dateReserv === undefined || $rootScope.activity.dateReserv === ""){
            swal("error", "Debes elegir una fecha y el número de cupos a comprar", "error");
           }else{
            window.location = '/#!/checkout';
           }
-        };
+    };
         
-        $scope.paintRoute = function(lat,lng) {
+    $scope.paintRoute = function(lat,lng) {
           marker = [];
             var init = new google.maps.LatLng(lat, lng);
             var destin = new google.maps.LatLng(parseFloat($scope.activity.location.lat),parseFloat($scope.activity.location.lng));
@@ -138,33 +151,33 @@ $scope.validDate = function(){
                   directionsDisplay.setDirections(response);
               }
             });
-        }
+    }
         
-        $scope.range = function(min, max, step) {
+    $scope.range = function(min, max, step) {
             step = step || 1;
             var input = [];
             for (var i = min; i <= max; i += step) {
                 input.push(i);
             }
             return input;
-        };
+    };
         
-        $scope.openRnt =  function(img){
+    $scope.openRnt =  function(img){
           swal({
             title: 'Registro Nacional De Turismo',
             html: '<img src="'+img+'" style="width: 100%;height: 280px;">',
             showCancelButton: false
           });
-        };
+    };
 
-        $scope.contact = {name: "", mail:"" };
-        $scope.suscribir =  function(){
+    $scope.contact = {name: "", mail:"" };
+    $scope.suscribir =  function(){
           if($scope.contact.name !== "" && $scope.contact.mail !== ""){
             suscribe();
           }else{
             swal("error", "Debes ingresar tu nombre y correo", "error");
           }
-        };
+    };
 }]);
     
   cviaja.controller('checkoutCtrl',['$scope','$rootScope','$window',function($scope,$rootScope,$window){
