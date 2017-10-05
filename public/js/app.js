@@ -1,7 +1,6 @@
 var cviaja = angular.module('dplan',["ngRoute","routes","services"]);
    
 cviaja.controller('activitiesCtrl',['activities','helpers','$scope','$q','$http','$window','$location','$rootScope',function(activities,helpers,$scope,$q,$http,$window,$location,$rootScope){
-  $scope.search = "Autopista norte";
     document.title = "DPlan, Planes unicos cerca a Bogotá";
   $scope.activities = [];
   $scope.contact = {};
