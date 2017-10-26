@@ -10,22 +10,16 @@ cviaja.controller('activitiesCtrl',['activities','helpers','$scope','$q','$http'
   $scope.irA = function(id,title){
     helpers.createUrl(id,title,function(res){
       $location.url($rootScope.urlFinal);
-    })      
-  }
-  $scope.subscripbeUser = function(){
-    activities.doPostRequest('/saveContact',{'mail': $scope.activities.mail},function(response){
-      message("¡Suscripción exitosa!",response.data.token);
-      $scope.activities.mail = "";
     })
   }
+  $scope.subscripbeUser = function(){ activities.doPostRequest('/saveContact',{'mail': $scope.activities.mail},function(response){ message("¡Suscripción exitosa!",response.data.token); $scope.activities.mail = "";}) }
 
-  $scope.searcSite = function(op){
-    $scope.search = op;
-  }
+  $scope.searcSite = function(op){ $scope.search = op; }
+  $scope.searcSiteA = function(op){ $scope.searchPlaces = op; }
 
   $scope.sendNewContact = function(){
-    activities.doPostRequest('/saveContact',$scope.contact,function(response){
-      message("¡Bienvenido a DPlan!","Ya guardamos tus datos nos pondremos en contacto contigo.");
+    activities.doPostRequest('/saveCustomPlan',$scope.contact,function(response){
+      message("¡Guardado!","Hemos recibido tu nuevo plan, nos pondremos en contacto contigo.");
       $scope.contact = {};
    })
   }
@@ -51,6 +45,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
     $scope.tab = 1;
     $scope.tabs = 1;
     document.title = $rootScope.activity.name;
+   // createCarousel($rootScope.activity.carousel);
     initAutocomplete($rootScope.activity.location);
     if ($rootScope.activity.legalInfo !== undefined) {
       $rootScope.activity.legalInfo = $rootScope.activity.legalInfo.split("&");
@@ -69,9 +64,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
       $rootScope.catFind = $rootScope.activity.categories;
     }
 
-    activities.getReferals('/getReferals',{'categories':$rootScope.catFind},function(res){
-      $rootScope.referals = res.data;
-    });
+    activities.getReferals('/getReferals',{'categories':$rootScope.catFind},function(res){ $rootScope.referals = res.data; });
 
     $scope.irA = function(id,title){
       helpers.createUrl(id,title,function(res){
@@ -80,6 +73,18 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
   }
   });
   
+  /*function createCarousel(value) {
+    var f ="";
+    var e = document.getElementById("insertCarousel")
+    let divCrsl = document.createElement("div");
+    for(a = 0;a < value.length; a++) {
+      f += "<img style='width:400px;background-image:url("+value[a]+");height:350px;background-size:cover; background-repeat: no-repeat;'/>";
+    }
+    divCrsl.innerHTML = f;
+    e.appendChild(divCrsl);
+    console.log(f) 
+  } */
+
     function initAutocomplete(location) {
         var latLng  = {lat: parseFloat(location.lat), lng: parseFloat(location.lng)};
             $scope.map = new google.maps.Map(document.getElementById('map'), {
@@ -126,7 +131,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
            window.location = '/#!/checkout';
           }
     };
-        
+
     $scope.paintRoute = function(lat,lng) {
           marker = [];
             var init = new google.maps.LatLng(lat, lng);

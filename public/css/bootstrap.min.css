@@ -13,8 +13,8 @@ body {
   margin: 0;
 }
 
-.pillsE { background-size: cover; filter: blur(2px); height: 127px;}
-.textE {    text-transform: none; position: absolute;color: #fff;text-align: center;padding: 20px;}
+.pillsE { background-size: cover; filter: blur(2px); height: 185px;}
+.textE {    text-transform: none; position: absolute;color: #fff;text-align: center;padding: 60px;}
 article,
 aside,
 details,
@@ -4305,8 +4305,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-bottom: 8px;
   background-color: transparent;
   background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
+  border: 2px solid transparent;
 }
 .navbar-toggle:focus {
   outline: 0;
@@ -4645,11 +4644,11 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: transparent;
 }
 .navbar-inverse .navbar-toggle {
-  border-color: #333;
+/*  border-color: #64dd17;*/
 }
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-  background-color: #333;
+  background-color: #fff;
 }
 .navbar-inverse .navbar-toggle .icon-bar {
   background-color: #66dd17;
@@ -5864,10 +5863,10 @@ button.list-group-item-danger.active:focus {
   font-size: 21px;
   font-weight: bold;
   line-height: 1;
-  color: #000;
+  color: #fff;
   text-shadow: 0 1px 0 #fff;
   filter: alpha(opacity=20);
-  opacity: .2;
+  opacity: .7;
 }
 .close:hover,
 .close:focus {
@@ -5954,7 +5953,9 @@ button.close {
 }
 .modal-header {
   padding-right: 15px;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #000;
+  background-color:#000;
+  color:#fff;
 }
 .modal-header .close {
   margin-top: -2px;

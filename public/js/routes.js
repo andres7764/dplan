@@ -27,6 +27,10 @@
           templateUrl: 'templates/response.html',
           controller: 'responseCtrl'
         })
+        .when('/customPlan',{
+          templateUrl: 'templates/customPlan.html',
+          controller: 'cPlanCtrl'
+        })
         
         .otherwise({ redirectTo : "/" });
     });

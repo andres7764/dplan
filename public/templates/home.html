@@ -30,64 +30,51 @@
           </div>
         </div>
       </div>
-
-      <!-- Controls -->
-     <!-- <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-      </a>
-      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-      </a> -->
      </div>  
     </div>
   <div class="col-lg-3 col-md-3 col-xs-12">
     <div class="row" style="padding: 3px;">
       <div style="background-image:url(../img/d.jpg);" class="pillsE col-lg-12 col-md-12 col-xs-12"></div>
-      <a data-toggle="modal" data-target="#corporativePlans"><h3 class="textE">Personaliza tu plan</h3></a>
+      <a data-toggle="modal" data-target="#createCustomicePlans"><h2 class="textE">Arma tu plan</h2></a>
     </div>
-    <div class="row" style="padding: 3px;">
+    <!--<div class="row" style="padding: 3px;">
             <div style="background-image:url(../img/e.jpg);" class="pillsE col-lg-12 col-md-12 col-xs-12"></div>
       <a data-toggle="modal" data-target="#corporativePlans"><h3 class="textE">Planes para empresas</h3></a>
-    </div>
+    </div>-->
     <div class="row" style="padding: 3px;">
-            <div style="background-image:url(../img/f.jpg);" class="pillsE col-lg-12 col-md-12 col-xs-12"></div>
-      <a href="#planes"><h3 class="textE">Ver todos los planes</h3></a>
+            <div style="background-image:url(../img/e.jpg);" class="pillsE col-lg-12 col-md-12 col-xs-12"></div>
+      <a data-toggle="modal" data-target="#howWorks"><h2 class="textE">¿Cómo funciona?</h2></a>
     </div>
   </div>
 </div>
 <div id="planes" class="container-fluid">
   <div class="row" style="padding: 20px 10px 0px 10px">
     <div class="col-lg-3 col-md-3 col-sm-6 hidden-xs animated rollIn completeF" style="padding-bottom: 30px;background-color: rgba(51, 51, 49, 0.08);padding: 7px">
-      <h4 style="padding: 10px"><b>Busca tu plan.</b></h4><br>
+      <h4 style="padding: 10px">Búsqueda avanzada.</h4><br>
     <h5><b>Saliendo por:</b></h5>
     <hr class="mini">
-    <select style="padding: 5px" class="form-control" ng-model="search">
-      <option value="">Todos</option>
-      <option>Autopista norte</option>
-      <option>Calle 80</option>
-      <option>Calle 13</option>
-      <option>Autopista sur</option>
-    </select>
+      <p ng-click="searcSite('')">Todos</p>
+      <p ng-click="searcSite('Autopista norte')">Autopista norte</p>
+      <p ng-click="searcSite('Calle 80')">Calle 80</p>
+      <p ng-click="searcSite('Calle 13')">Calle 13</p>
+      <p ng-click="searcSite('Autopista sur')">Autopista sur</p>
+      <br>
   <h5><b>Categoria:</b></h5>
   <hr class="mini">
-    <select  class="form-control" ng-model="searchPlaces">
-      <option value="">Todas</option>
-      <option>Escape 1 día</option>
-      <option>Extremo</option>
-      <option>Pasadía</option>
-      <option>Biciturismo</option>
-      <option>Pesca</option>
-      <option>Gastronómico</option>
-      <option>Talleres teorico-Practicos</option>
-    </select>
+      <p ng-click="searcSiteA('Escape 1 día')">Escape 1 día</p>
+      <p ng-click="searcSiteA('Extremo')">Extremo</p>
+      <p ng-click="searcSiteA('Pasadía')">Pasadía</p>
+      <p ng-click="searcSiteA('Biciturismo')">Biciturismo</p>
+      <p ng-click="searcSiteA('Pesca')">Pesca</p>
+      <p ng-click="searcSiteA('Gastronómico')">Gastronómico</p>
+      <p ng-click="searcSiteA('Relax')">Relax</p>
+      <br>
     <h5><b>Ciudad:</b></h5>
     <hr class="mini">
-    <select class="form-control">
-      <option>Bogotá</option>
-      <option>Medellín - Proximamente</option>
-      <option>Cali - Proximamente</option>
-      <option>Villavicencio - Proximamente</option>
-    </select>
+      <p>Bogotá</p>
+      <p>Medellín - Proximamente</p>
+      <p>Cali - Proximamente</p>
+      <p>Villavicencio - Proximamente</p>
     </div>
   <div ng-repeat="activity in activities | orderBy: 'order' | filter:search | filter:searchPlaces" class="col-lg-3 col-md-3 col-sm-6 col-xs-12 animated rollIn completeF" style="padding-bottom: 30px;">
 	 <div class="thumbnail wrp" style="min-height: 360px;cursor:pointer" ng-click="irA(activity._id,activity.name)">
@@ -146,10 +133,10 @@
 			</div>
 		</div>
    </section>
-   <section class="stats imgSubsc" id="subscribe" style="margin-top: 30px;">
+   <section class="stats imgSubsc" id="subscribe" style="margin-top: 30px;border-bottom-color: #fff;border-bottom-style: groove;">
 	<div class="row" style="width: 100%;">
 	  <div class="col-md-5 col-sm-5 col-xs-12">
-		<h4 style="color: #64dd17;padding-left: 5px;">Quieres recibir información semanal de los diferentes planes que tenemos para ti</h4>
+		<h4 style="padding-left: 7px;">Recibe los mejores planes en tu correo cada semana</h4>
 	  </div>
 	  <form name="subscribeForm">
 	  <div class="col-md-5 col-sm-5 col-xs-12">
@@ -163,15 +150,3 @@
 	  </form>
 	</div>
    </section>
-   <br><br>
-   <script type="text/javascript">
-     window.onload = function(){ 
-         $('.owl-carousel').owlCarousel({
-          items:4,
-          lazyLoad:true,
-          loop:true,
-          margin:10
-        });
-    }
-
-   </script>

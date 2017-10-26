@@ -25,7 +25,7 @@
   <meta id="ttleMeta" property="og:title" content="DPlan">
   <meta property="og:description" content="Compra actividades únicas cerca de Bogotá">
   <meta property="og:type" content="website">
-  <meta id="imgMeta" property="og:image" content="http://dplan.co/img/projects/enParAndamos3.png">
+  <meta id="imgMeta" property="og:image" content="https://s3-eu-west-1.amazonaws.com/dplan/bbab6.jpg">
   <meta id="urlMeta" property="og:url" content="https://dplan.co">
   <link rel="shortcut icon" type="image/png" href="../img/dplan.png"/>
   <title>.: DPlan - Inicio :.</title>
@@ -86,10 +86,14 @@ src="https://www.facebook.com/tr?id=100840487318857&ev=PageView&noscript=1"
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav link-effect" style="float:right;">
-            <li><a href="#planes">¿Que hacer?</a></li>
+            <li><a data-toggle="modal" data-target="#howWorks">Cómo funciona</a></li>
+            <li><a href="#planes">Nuestros planes</a></li>
+            <li><a href="#!/armatuplan">Arma tu plan</a></li>
+            <li><a data-toggle="modal" data-target="#largeModal">Nosotros</a></li>
+            <li><a href="#importantLinks">Contacto</a></li>
             <li><a href="#subscribe">Suscríbete</a></li>
-            <!--<li><a href="/mapa">Ver en mapa</a></li>
-                <li><a href="#!/blog">Blog</a></li>-->
+
+            <!--<li><a href="#!/blog">Blog</a></li>-->
           </ul>
         </div>
       </div>
@@ -98,23 +102,27 @@ src="https://www.facebook.com/tr?id=100840487318857&ev=PageView&noscript=1"
  <!-- End header -->
   <div ng-view></div>
 <!-- footer -->
- <div class="footer">
+ <div class="footer" id="importantLinks">
   <div class="container-fluid">
-    <div class="col-lg-3 col-md-3 col-xs-5 footer-w3ls2" style="padding-top: 7px">
+    <div class="col-lg-2 col-md-2 col-xs-3 footer-w3ls2" style="padding-top: 7px">
       <div class="secure"></div>
     </div>
-    <div class="col-lg-9 col-md-9 col-xs-7 footer-w3ls2" style="padding:20px 5px 0px 0px; text-align: left">
+    <div class="col-lg-2 col-md-2 col-xs-5 footer-w3ls2" style="padding:20px 5px 0px 0px; text-align: left">
       <h5 style="color: #fff">Enlaces de interés</h5>
       <hr class="mini">
       <p data-toggle="modal" data-target="#largeModal">Sobre nosotros </p>
       <p data-toggle="modal" data-target="#formBePart">Cargar mis planes en Dplan<a href="https://dplan.co/" target="_blank"></a></p>
       <p data-toggle="modal" data-target="#corporativePlans">Planes corporativos<a href="https://dplan.co/" target="_blank"></a></p>
-      <p>Suscribirse al<a href="./#subscribe"> boletín</a></p>
+      <p>Términos y condiciones></p>
       <p>Mapa del <a href="https://dplan.co/sitemap.xml" target="_blank">sitio</a></p>
-      <ul class="bottom-links" style="float: left; padding-top: 23px;">
-        <li><a target="_blank" href="https://www.facebook.com/DPl4n/"><i class="fa fa-facebook"></i></a></li>
-        <li><a target="_blank" href="https://twitter.com/dplan_"><i class="fa fa-twitter"></i></a></li>
-      </ul>
+    </div>
+        <div class="col-lg-8 col-md-8 col-xs-4 footer-w3ls2" style="padding:20px 5px 0px 0px; text-align: left">
+      <h5 style="color: #fff">Servicio al cliente</h5>
+      <hr class="mini">
+      <p><a target="_blank" href="https://www.facebook.com/DPl4n/"><i class="fa fa-facebook"></i> /dpl4n</a></p>
+      <p><a target="_blank" href="https://twitter.com/dplan_"><i class="fa fa-twitter"></i> @dplan_</a></p>
+      <p><a target="_blank" href="https://api.whatsapp.com/api/send?phone=573016227485"><i class="fa fa-whatsapp"> 3016227485</i></a></p>
+      <p><a target="_blank" href="mailto:contacto@dplan.co?subject=Servicio al cliente"><i class="fa fa-envelope-o"></i> contacto@dplan.co</a></p>
     </div>
   </div>
   <div class="row">
@@ -137,9 +145,9 @@ src="https://www.facebook.com/tr?id=100840487318857&ev=PageView&noscript=1"
           <img src="img/equipo.jpg" class="img-responsive" alt="Dplan" title="Dplan">
       </div>
       <div class="col-lg-6 col-md-6">
-        <p class="banner-p1">Somos DPLAN, una plataforma en la que encontrarás los mejores planes para realizar  salidas familiares, con tu pareja o escapes con amigos. 
-Sal de la rutina semanal. Compra tus planes con facilidades de pago y lo mejor de todo, cerca de Bogotá.
-</p><br>
+        <p class="banner-p1">Hola!! Somos DPLAN, un emprendimiento 100% Colombiano. Aqui encontrarás las mejores actividades para realizar cualquier día de la semana. tenemos planes para familias, salidas en pareja o escapes con amigos.</p>
+        <p class="banner-p1">En Dplan queremos que conozcas las mejores actividades que puedes realizar a menos de dos horas de la ciudady con personal experto cada área.</p>
+        <p class="banner-p1" style="text-align: center;">Bienvenid@ a dplan, tu aliado para salir de la rutina semanal!<br><b> Con el apoyo de mintic Cloudbased y apps.co</b></p>
       </div>
      </div>
     </div>
@@ -189,7 +197,7 @@ Sal de la rutina semanal. Compra tus planes con facilidades de pago y lo mejor d
 <!-- End Modal contact -->
 
 <!-- Modal Contact -->
-<div class="modal fade" id="corporativePlans" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true" ng-controller="activitiesCtrl">
+<div class="modal fade" id="createCustomicePlans" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true" ng-controller="activitiesCtrl">
  <div class="modal-dialog modal-lg">
   <div class="modal-content">
     <div class="modal-header">
@@ -198,7 +206,7 @@ Sal de la rutina semanal. Compra tus planes con facilidades de pago y lo mejor d
     <div class="modal-body">
      <div class="row">
       <div class="col-lg-6 col-md-6 col-xs-12">
-        <p style="font-size: 20px;text-align: center;padding: 10px;">Estamos trabajando para brindar este servicio muy pronto, sin embargo déjanos tus datos y agendaremos una reunión lo mas pronto posible.</p>
+        <p style="font-size: 20px;text-align: center;padding: 10px;">En Dplan queremos brindarte la mejor experiencia, cuentanos sobre el plan de interés, déjanos tus datos y nos comunicaremos con tigo lo más pronto posible.</p>
         <div style="background-image: url(https://s3-eu-west-1.amazonaws.com/dplan/working.jpg);background-size:cover;height:200px" ></div>
       </div>
       <div class="col-lg-6 col-md-6 col-xs-12" style="padding: 12px">
@@ -215,10 +223,40 @@ Sal de la rutina semanal. Compra tus planes con facilidades de pago y lo mejor d
         <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
         <input type="text" ng-model="contact.phone" class="form-control" placeholder="Celular (Opcional)" aria-describedby="sizing-addon1">
       </div>
+    <h3>Selecciona:</h3>
+      <div>
+        <input style="width:30px;float: left;height:30px" type="checkbox" ng-model="contact.transp" value=""> 
+        <p style="padding:10px;float: left;">Transporte</p>
+      </div>
+      <div>
+        <input style="width:30px;float: left;height:30px" type="checkbox" ng-model="contact.food" value=""> 
+        <p style="padding:10px;float: left;">Alimentación</p>
+      </div>
+      <div>
+        <input style="width:30px;float: left;height:30px" type="checkbox" ng-model="contact.hostal" value=""> 
+        <p style="padding:10px;float: left;">Hospedaje</p>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+         <label>Cantidad de personas</label>
+         <select ng-model="contact.qty" class="form-control">
+            <option> Entre 1 a 5</option>
+            <option> Entre 6 a 10</option>
+            <option> Entre 11 a 15</option>
+            <option> Entre 16 a 20</option>
+            <option> Mas de 21 personas</option>
+          </select>
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-6">
+          <label>Fecha</label>
+          <input type="Date" class="form-control" ng-model="contact.dateExit" name="">
+        </div>
+      </div>
       <div class="input-group input-group-lg" style="padding-top: 7px">
         <span class="input-group-addon" id="sizing-addon1">
         <i class="fa fa-pencil-square-o bigicon"></i></span>
-        <textarea ng-model="contact.description" style="min-height: 150px" class="form-control" id="message" name="message" placeholder="Cuéntanos un poco sobre tu empresa" rows="7" required></textarea>
+        <textarea ng-model="contact.description" style="min-height: 150px" class="form-control" id="message" name="message" placeholder="Cuéntanos mas sobre el plan que te interesó" rows="7" required></textarea>
       </div>
        <button style="margin-top: 7px; width: 100%" type="submit" ng-disabled="loginform.$invalid" ng-click="sendNewContact()" class="btn btn-primary btn-lg">Contactar <i class="fa fa-paper-plane"></i> </button>
       </form>
@@ -229,6 +267,42 @@ Sal de la rutina semanal. Compra tus planes con facilidades de pago y lo mejor d
  </div>
 </div>
 <!-- End Modal contact -->
+<!-- works Contact -->
+<div class="modal fade" id="howWorks" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true" ng-controller="activitiesCtrl">
+ <div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+     <h3 style="padding-left: 20px">¿Cómo funciona?</h3>
+    </div>
+    <div class="modal-body">
+     <div class="row">
+      <div class="col-lg-2 col-md-2 col-xs-12" style="text-align: center;margin-left: 35px">
+        <i class="fa fa-5x fa-search" aria-hidden="true"></i>
+        <h5>Busca el plan que deseas realizar</h5>
+        <p>Usa nuestro buscador para seleccionar los planes de acuerdo a tus gustos y salida de Bogotá</p>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-12" style="text-align: center;">    
+       <i class="fa fa-5x fa-calendar-check-o" aria-hidden="true"></i>   
+        <h5>Selecciona el día y la cantidad de tiquetes que deseas adquirir.</h5>
+        <p>En dplan encontrarás planes para fines de semana y escapes de tu rutina de lunes a viernes.</p>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-12" style="text-align: center;">
+        <i class="fa fa-5x fa-money" aria-hidden="true"></i>
+        <h5>Compra tu plan en linea con cualquier medio de pago</h5>
+        <p>Deja a un lado las excusas y aprovecha ese plan que tanto quieres. Paga con tarjetas débito, crédito, baloto efecty entre otros medios de pago que tenemos.</p>
+      </div>
+      <div class="col-lg-3 col-md-3 col-xs-12" style="text-align: center;">
+        <i class="fa fa-5x fa-qrcode" aria-hidden="true"></i>
+        <h5>Recibe un código al completar tu pago</h5>
+        <p>La plataforma genera automáticamente un código el cual vas a usar para redimir tu actividad además de todas las indicaciones necesarias que debes tener en cuenta para realizar tu actividad.</p>
+      </div>
+     </div>
+    </div>
+  </div>
+ </div>
+</div>
+<!-- End works contact -->
 </body>
   <link rel="stylesheet" type="text/css" href="../css/animate.css">
   <link rel="stylesheet" type="text/css" href="../css/style.css" media="none" onload="if(media!='all')media='all'">
@@ -242,8 +316,8 @@ Sal de la rutina semanal. Compra tus planes con facilidades de pago y lo mejor d
 <script src="../js/angular-route.min.js"></script>
 <script src="../js/routes.js"></script>
 <script src="../jsmin/services.js"></script>
-<script src="../jsmin/app.js" ></script>
-<script src="../js/owl.carousel.min.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/owl.carousel.min.js" async></script>
 <script src="../js/sweetalert2.min.js" async></script>
 <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 <script src="../js/bootstrap.min.js"></script>

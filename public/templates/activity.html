@@ -1,20 +1,11 @@
 <div class="container-fluid"> 
   <div class="row" style="padding-top:110px">
     <div class="col-md-6 col-sm-6 col-xs-12" style="padding: 10px 10px 0px 20px">
-       <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-         <li ng-repeat="act in activity.carousel track by $index" data-target="#myCarousel" data-slide-to="{{$index+1}}"></li>
-        </ol>
-        <div class="carousel-inner" style="min-height: 0px !important">
-          <div class="item active">
-           <div style="background-image: url({{activity.url}});" class="customImg"></div>
-           </div>
-          <div ng-repeat="act in activity.carousel track by $index" class="item">
-            <div class="customImg" style="background-image: url({{act}});"></div>
-          </div>
-        </div>
-       </div>
+      <div class="owl-carousel" id="insertCarousel">
+      <img style="width:400px;background-image:url({{activity.carousel[0]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
+      <img style="width:400px;background-image:url({{activity.carousel[1]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
+      <img style="width:400px;background-image:url({{activity.carousel[2]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
+     </div>
     </div>
      <div class="col-md-6 col-sm-6 col-xs-12 completeF" style="padding: 0px 40px 0px 40px">
         <h1>{{activity.name}}</h1>
@@ -47,7 +38,7 @@
      </div>
   </div>
     <div class="row">
-      <div class="col-md-6 col-xs-12" style="font-size: 15px!important;overflow: hidden;padding: 0px 40px 0px 20px;text-align: justify;">
+      <div class="col-lg-6 col-md-6 col-xs-12" style="font-size: 15px!important;overflow: hidden;padding: 0px 40px 0px 20px;text-align: justify;">
         <h3>Información</h3>
         <hr class="mini" style="width: 220px"><br><br>
         <ul class="nav nav-tabs">
@@ -77,9 +68,8 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-xs-12" style="padding: 0px 40px 0px 40px">
-        
-        <ul style="padding-top: 100px" class="nav nav-tabs">
+      <div class="col-lg-6 col-md-6 col-xs-12" style="padding: 0px 40px 0px 40px;">
+        <ul style="padding-top: 80px" class="nav nav-tabs">
           <li class="active"><a>Ubicación</a></li>
         </ul>
         <div class="tab-pane active" id="map" style="width: 100% !important;height: 300px !important;margin-bottom: 20px;padding-top: 15px"></div>
@@ -100,6 +90,7 @@
   </div>  
  </div>
 </div>
+
 <script type="text/javascript">
   $("#clickBP").click(function(){
     fbq('track', 'Purchase', {
@@ -107,4 +98,12 @@
      currency: 'COP',
      });
   })
+  $('.owl-carousel').owlCarousel({
+      margin:10,
+      loop:true,
+      autoWidth:true,
+      nav:true,
+  })
+
+
 </script>
