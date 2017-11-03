@@ -13,8 +13,16 @@ body {
   margin: 0;
 }
 
-.pillsE { background-size: cover; filter: blur(2px); height: 185px;}
-.textE {    text-transform: none; position: absolute;color: #fff;text-align: center;padding: 60px;}
+#fb:hover{
+  filter: blur(0px);  
+}
+
+#tw:hover{
+  filter: blur(0px);  
+}
+
+.pillsE { background-size: cover; filter: blur(2px); height: 150px;}
+.textE {    text-transform: none; position: absolute;color: #fff;text-align: center;padding: 50px;}
 article,
 aside,
 details,

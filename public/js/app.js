@@ -12,7 +12,12 @@ cviaja.controller('activitiesCtrl',['activities','helpers','$scope','$q','$http'
       $location.url($rootScope.urlFinal);
     })
   }
-  $scope.subscripbeUser = function(){ activities.doPostRequest('/saveContact',{'mail': $scope.activities.mail},function(response){ message("¡Suscripción exitosa!",response.data.token); $scope.activities.mail = "";}) }
+  $scope.subscripbeUser = function(){ 
+    activities.doPostRequest('/saveContact',{'mail': $scope.activities.mail},function(response){
+     message("¡Suscripción exitosa!",response.data.token); 
+     $scope.activities.mail = "";
+   }) 
+  }
 
   $scope.searcSite = function(op){ $scope.search = op; }
   $scope.searcSiteA = function(op){ $scope.searchPlaces = op; }
@@ -244,3 +249,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
 
   cviaja.controller('blogCtrl',function(){
   });
+
+  cviaja.controller('cPlanCtrl',function(){
+    
+  })

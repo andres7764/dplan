@@ -19,15 +19,15 @@
           templateUrl: 'templates/activity.html',
           controller: 'activityCtrl'
         })
-        .when('/checkout', {
+        .when('/checkout/', {
           templateUrl: 'templates/checkout.html',
           controller: 'checkoutCtrl'
         })
-        .when('/response', {
+        .when('/response/', {
           templateUrl: 'templates/response.html',
           controller: 'responseCtrl'
         })
-        .when('/customPlan',{
+        .when('/arma-tu-plan/',{
           templateUrl: 'templates/customPlan.html',
           controller: 'cPlanCtrl'
         })
