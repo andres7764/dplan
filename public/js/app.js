@@ -130,11 +130,11 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
     };
 
     $scope.reservA = function(value) {
-          if($rootScope.activity.dateReserv === undefined || $rootScope.activity.dateReserv === ""){
+        /*  if($rootScope.activity.dateReserv === undefined || $rootScope.activity.dateReserv === ""){
            swal("error", "Debes elegir una fecha y el número de cupos a comprar", "error");
           }else{
            window.location = '/#!/checkout';
-          }
+          }*/
     };
 
     $scope.paintRoute = function(lat,lng) {
