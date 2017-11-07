@@ -97,16 +97,16 @@
  	 }
 	})
 
-	.factory('helpers',function($rootScope) {
+	.factory('helpers',function($rootScope,$location) {
 		function createUrl(id,title) {
 		  var letra = title.replace(/[^a-zA-Z 0-9.]+/g,'');
 	       	  letra = letra.replace(/ /g,'+');
     	  $rootScope.urlFinal = '/catalogo/'+letra+"_"+id;
+    	  $location.url($rootScope.urlFinal);
 		}
 		return {
-			createUrl: function(id,title,callback){
+			createUrl: function(id,title){
 			 createUrl(id,title);
-			 callback();
 			},
 			configMap: [{
 				    "elementType": "geometry",

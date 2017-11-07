@@ -70,6 +70,13 @@ src="https://www.facebook.com/tr?id=100840487318857&ev=PageView&noscript=1"
   ga('send', 'pageview');
 
 </script>
+<script type="text/javascript">
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    if (/android/i.test(userAgent) || /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+         window.location = "./#!/ver-mapa/";
+    }
+   
+</script>
 </head>
 <body class="bkBody">
 <!-- Header -->
@@ -242,7 +249,7 @@ src="https://www.facebook.com/tr?id=100840487318857&ev=PageView&noscript=1"
 <script src="../js/angular.min.js"></script>
 <script src="../js/angular-route.min.js"></script>
 <script src="../js/app.js"></script>
-<script src="../jsmin/services.js"></script>
+<script src="../js/services.js"></script>
 <script src="../js/routes.js"></script>
 <script src="../js/owl.carousel.min.js" async></script>
 <script src="../js/sweetalert2.min.js" async></script>

@@ -8,9 +8,7 @@ cviaja.controller('activitiesCtrl',['activities','helpers','$scope','$q','$http'
     $rootScope.activities = res.data.activities;
   });
   $scope.irA = function(id,title){
-    helpers.createUrl(id,title,function(res){
-      $location.url($rootScope.urlFinal);
-    })
+    helpers.createUrl(id,title);
   }
   $scope.subscripbeUser = function(){ 
     activities.doPostRequest('/saveContact',{'mail': $scope.activities.mail},function(response){
@@ -72,24 +70,10 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
 
     activities.getReferals('/getReferals',{'categories':$rootScope.catFind},function(res){ $rootScope.referals = res.data; });
 
-    $scope.irA = function(id,title){
-      helpers.createUrl(id,title,function(res){
-      $location.url($rootScope.urlFinal);
-    })      
-  }
+   $scope.irA = function(id,title){
+      helpers.createUrl(id,title);
+   }
   });
-  
-  /*function createCarousel(value) {
-    var f ="";
-    var e = document.getElementById("insertCarousel")
-    let divCrsl = document.createElement("div");
-    for(a = 0;a < value.length; a++) {
-      f += "<img style='width:400px;background-image:url("+value[a]+");height:350px;background-size:cover; background-repeat: no-repeat;'/>";
-    }
-    divCrsl.innerHTML = f;
-    e.appendChild(divCrsl);
-    console.log(f) 
-  } */
 
     function initAutocomplete(location) {
         var latLng  = {lat: parseFloat(location.lat), lng: parseFloat(location.lng)};
@@ -99,7 +83,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
             });
             var marker = new google.maps.Marker({
               position: latLng,
-              icon: image,
+              icon: "../img/icons/dplanMarker.png",
               map: $scope.map
         });
 
@@ -253,7 +237,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
   cviaja.controller('blogCtrl',function(){
   });
 
-  cviaja.controller('mapCtrl',['helpers','activities','$scope','$rootScope',function(helpers,activities,$scope,$rootScope){
+  cviaja.controller('mapCtrl',['$location','helpers','activities','$scope','$rootScope',function($location,helpers,activities,$scope,$rootScope){
       navigator.geolocation.getCurrentPosition(information, funcError);
       function information(e){
         initAutocomplete(e.coords);
@@ -262,9 +246,8 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
         swal('Opps!','debes permitir tu ubicación para mejorar la experiencia de navegación','error');
         window.location = "./#!";
       }
-//upload
+
       function initAutocomplete(location) {
-        console.log(helpers);
         document.getElementById('mapA').style.height = parseInt(screen.height);
         var latLng  = {lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)};
             $scope.map = new google.maps.Map(document.getElementById('mapA'), {
@@ -277,40 +260,37 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
               map: $scope.map,
               icon: "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjMycHgiIGhlaWdodD0iMzJweCI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTI1NiwwQzE1My43NTUsMCw3MC41NzMsODMuMTgyLDcwLjU3MywxODUuNDI2YzAsMTI2Ljg4OCwxNjUuOTM5LDMxMy4xNjcsMTczLjAwNCwzMjEuMDM1ICAgIGM2LjYzNiw3LjM5MSwxOC4yMjIsNy4zNzgsMjQuODQ2LDBjNy4wNjUtNy44NjgsMTczLjAwNC0xOTQuMTQ3LDE3My4wMDQtMzIxLjAzNUM0NDEuNDI1LDgzLjE4MiwzNTguMjQ0LDAsMjU2LDB6IE0yNTYsMjc4LjcxOSAgICBjLTUxLjQ0MiwwLTkzLjI5Mi00MS44NTEtOTMuMjkyLTkzLjI5M1MyMDQuNTU5LDkyLjEzNCwyNTYsOTIuMTM0czkzLjI5MSw0MS44NTEsOTMuMjkxLDkzLjI5M1MzMDcuNDQxLDI3OC43MTksMjU2LDI3OC43MTl6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="
         });
-
-        // Create the search box and link it to the UI element.
-/*        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        $scope.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-        $scope.map.addListener('bounds_changed', function() {
-          searchBox.setBounds($scope.map.getBounds());
-        });
-        var markers = [];
-        searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
-          directionsService = new google.maps.DirectionsService();
-        directionsDisplay = new google.maps.DirectionsRenderer();
-          $scope.paintRoute(places[0].geometry.location.lat(),places[0].geometry.location.lng());
-        }); */
-
-        
       if($rootScope.activities.length < 1) {
        activities.doRequest('/getActivities',function(res){
           $rootScope.activities = res.data.activities;
        });
       } else {
        for(var a=0;a<$rootScope.activities.length;a++) {
-        paintMarkers($rootScope.activities[a].location);
+        paintMarkers($rootScope.activities[a].location,a);
        }
       }
-     function paintMarkers(object){
+
+     function paintMarkers(object,num){
+      helpers.createUrl($rootScope.activities[num]._id,$rootScope.activities[num].name);
       var myLatLng = {lat: parseFloat(object.lat), lng: parseFloat(object.lng)};
       var marker = new google.maps.Marker({
         position: myLatLng,
         map: $scope.map,
         title: object.name,
-        icon: "../img/icons/dplanMarker.png"
+        icon: "../img/icons/dplanMarker.png",
+        animation: google.maps.Animation.DROP,
+        draggable: false
       });
+      var contentString = "<div id='iw-container'><h5><b>"+$rootScope.activities[num].name+"<b></h5><br><div class='iw-content'><p><b>Distancia</b>: Saliendo por la "+$rootScope.activities[num].exitBy+"</p><div style='width:400px;text-align:justify;max-height:115px;overflow:hidden'><p><b>Descripción:</b> "+$rootScope.activities[num].description+"</p></div><p><b>Precio:</b> $"+$rootScope.activities[num].mount+"</p></div><div style='width:400px;height:180px;margin-top:5px;margin-bottom:5px;background-size:cover;background-image:url("+$rootScope.activities[num].url+");'></div><a href='#!"+$rootScope.urlFinal+"' target='_blank'>ver mas</a></div>";
+      var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+      google.maps.event.addListener(marker, 'click', (function(marker,i) {
+       return function() {
+        infowindow.open($scope.map, marker);
+       }
+      })(marker, 0));
+      marker.setMap($scope.map);       
      }
     };
   }])
