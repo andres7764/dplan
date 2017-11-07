@@ -262,7 +262,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
         swal('Opps!','debes permitir tu ubicación para mejorar la experiencia de navegación','error');
         window.location = "./#!";
       }
-
+//upload
       function initAutocomplete(location) {
         console.log(helpers);
         document.getElementById('mapA').style.height = parseInt(screen.height);
