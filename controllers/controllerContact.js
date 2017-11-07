@@ -1,10 +1,19 @@
 var mongoose  =  require('mongoose');
 var ObjectId  = mongoose.Schema.ObjectId;
 var contacto =  mongoose.model('contactmodel');
-
+var customPlan = mongoose.model('customplan');
 //POST - Insert a new user in the Collection
 exports.saveContact = function(req, res) {
     var newUser = new contacto(req.body);
+    newUser.save(function(err, newUser) {
+        if(err) { return res.status(500).send(err.message); }
+           return res.status(200).send({token: "Hemos guardado tu correo ahora estarás informado de todos los planes que carguemos para ti"});
+    });
+}
+
+exports.saveCustomPlan = function(req, res) {
+    var newUser = new customPlan(req.body);
+    console.log(newUser);
     newUser.save(function(err, newUser) {
         if(err) { return res.status(500).send(err.message); }
            return res.status(200).send({token: "Hemos guardado tu correo ahora estarás informado de todos los planes que carguemos para ti"});

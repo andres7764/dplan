@@ -29,9 +29,21 @@
         })
         .when('/arma-tu-plan/',{
           templateUrl: 'templates/customPlan.html',
-          controller: 'cPlanCtrl'
+          controller: 'activitiesCtrl'
         })
-        
+        .when('/ver-mapa/',{
+          templateUrl: 'templates/map.html',
+          controller: 'mapCtrl'
+        })
+/*        .when('/ver-mapa/',{
+          templateUrl: 'templates/map.html',
+          controller: 'mapCtrl'
+        })
+        .when('/ver-mapa/',{
+          templateUrl: 'templates/map.html',
+          controller: 'mapCtrl'
+        })                
+*/        
         .otherwise({ redirectTo : "/" });
     });
     //$locationProvider.html5Mode(true);

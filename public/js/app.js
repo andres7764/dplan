@@ -2,10 +2,10 @@ var cviaja = angular.module('dplan',["ngRoute","routes","services"]);
    
 cviaja.controller('activitiesCtrl',['activities','helpers','$scope','$q','$http','$window','$location','$rootScope',function(activities,helpers,$scope,$q,$http,$window,$location,$rootScope){
     document.title = "DPlan, Planes unicos cerca a Bogotá";
-  $scope.activities = [];
+  $rootScope.activities = [];
   $scope.contact = {};
   activities.doRequest('/getActivities',function(res){
-    $scope.activities = res.data.activities;
+    $rootScope.activities = res.data.activities;
   });
   $scope.irA = function(id,title){
     helpers.createUrl(id,title,function(res){
@@ -23,6 +23,7 @@ cviaja.controller('activitiesCtrl',['activities','helpers','$scope','$q','$http'
   $scope.searcSiteA = function(op){ $scope.searchPlaces = op; }
 
   $scope.sendNewContact = function(){
+    console.log($scope.contact);
     activities.doPostRequest('/saveCustomPlan',$scope.contact,function(response){
       message("¡Guardado!","Hemos recibido tu nuevo plan, nos pondremos en contacto contigo.");
       $scope.contact = {};
@@ -98,6 +99,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
             });
             var marker = new google.maps.Marker({
               position: latLng,
+              icon: image,
               map: $scope.map
         });
 
@@ -130,6 +132,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
     };
 
     $scope.reservA = function(value) {
+           window.location = '/#!/checkout';
         /*  if($rootScope.activity.dateReserv === undefined || $rootScope.activity.dateReserv === ""){
            swal("error", "Debes elegir una fecha y el número de cupos a comprar", "error");
           }else{
@@ -250,6 +253,64 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
   cviaja.controller('blogCtrl',function(){
   });
 
-  cviaja.controller('cPlanCtrl',function(){
-    
-  })
+  cviaja.controller('mapCtrl',['helpers','activities','$scope','$rootScope',function(helpers,activities,$scope,$rootScope){
+      navigator.geolocation.getCurrentPosition(information, funcError);
+      function information(e){
+        initAutocomplete(e.coords);
+      }
+      function funcError(e){
+        swal('Opps!','debes permitir tu ubicación para mejorar la experiencia de navegación','error');
+        window.location = "./#!";
+      }
+
+      function initAutocomplete(location) {
+        console.log(helpers);
+        document.getElementById('mapA').style.height = parseInt(screen.height);
+        var latLng  = {lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)};
+            $scope.map = new google.maps.Map(document.getElementById('mapA'), {
+              zoom: 14,
+              center: latLng,
+              styles: helpers.configMap
+            });
+            var marker = new google.maps.Marker({
+              position: latLng,
+              map: $scope.map,
+              icon: "data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjMycHgiIGhlaWdodD0iMzJweCI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTI1NiwwQzE1My43NTUsMCw3MC41NzMsODMuMTgyLDcwLjU3MywxODUuNDI2YzAsMTI2Ljg4OCwxNjUuOTM5LDMxMy4xNjcsMTczLjAwNCwzMjEuMDM1ICAgIGM2LjYzNiw3LjM5MSwxOC4yMjIsNy4zNzgsMjQuODQ2LDBjNy4wNjUtNy44NjgsMTczLjAwNC0xOTQuMTQ3LDE3My4wMDQtMzIxLjAzNUM0NDEuNDI1LDgzLjE4MiwzNTguMjQ0LDAsMjU2LDB6IE0yNTYsMjc4LjcxOSAgICBjLTUxLjQ0MiwwLTkzLjI5Mi00MS44NTEtOTMuMjkyLTkzLjI5M1MyMDQuNTU5LDkyLjEzNCwyNTYsOTIuMTM0czkzLjI5MSw0MS44NTEsOTMuMjkxLDkzLjI5M1MzMDcuNDQxLDI3OC43MTksMjU2LDI3OC43MTl6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="
+        });
+
+        // Create the search box and link it to the UI element.
+/*        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        $scope.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        $scope.map.addListener('bounds_changed', function() {
+          searchBox.setBounds($scope.map.getBounds());
+        });
+        var markers = [];
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+          directionsService = new google.maps.DirectionsService();
+        directionsDisplay = new google.maps.DirectionsRenderer();
+          $scope.paintRoute(places[0].geometry.location.lat(),places[0].geometry.location.lng());
+        }); */
+
+        
+      if($rootScope.activities.length < 1) {
+       activities.doRequest('/getActivities',function(res){
+          $rootScope.activities = res.data.activities;
+       });
+      } else {
+       for(var a=0;a<$rootScope.activities.length;a++) {
+        paintMarkers($rootScope.activities[a].location);
+       }
+      }
+     function paintMarkers(object){
+      var myLatLng = {lat: parseFloat(object.lat), lng: parseFloat(object.lng)};
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: $scope.map,
+        title: object.name,
+        icon: "../img/icons/dplanMarker.png"
+      });
+     }
+    };
+  }])
