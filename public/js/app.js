@@ -1,12 +1,10 @@
 var cviaja = angular.module('dplan',["ngRoute","routes","services"]);
    
 cviaja.controller('activitiesCtrl',['activities','helpers','$scope','$q','$http','$window','$location','$rootScope',function(activities,helpers,$scope,$q,$http,$window,$location,$rootScope){
-    document.title = "DPlan, Planes unicos cerca a Bogotá";
-  $rootScope.activities = [];
-  $scope.contact = {};
-  activities.doRequest('/getActivities',function(res){
-    $rootScope.activities = res.data.activities;
-  });
+document.title = "DPlan, Planes unicos cerca a Bogotá";
+$rootScope.activities = [];
+$scope.contact = {};
+  activities.doRequest('/getActivities',function(res){ $rootScope.activities = res.data.activities; });
   $scope.irA = function(id,title){
     helpers.createUrl(id,title);
   }
@@ -94,10 +92,9 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
         $scope.map.addListener('bounds_changed', function() {
           searchBox.setBounds($scope.map.getBounds());
         });
-        var markers = [];
         searchBox.addListener('places_changed', function() {
           var places = searchBox.getPlaces();
-          directionsService = new google.maps.DirectionsService();
+        directionsService = new google.maps.DirectionsService();
         directionsDisplay = new google.maps.DirectionsRenderer();
           $scope.paintRoute(places[0].geometry.location.lat(),places[0].geometry.location.lng());
         });
@@ -125,7 +122,6 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
     };
 
     $scope.paintRoute = function(lat,lng) {
-          marker = [];
             var init = new google.maps.LatLng(lat, lng);
             var destin = new google.maps.LatLng(parseFloat($scope.activity.location.lat),parseFloat($scope.activity.location.lng));
             var request = {
@@ -149,14 +145,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
             });
     }
         
-    $scope.range = function(min, max, step) {
-            step = step || 1;
-            var input = [];
-            for (var i = min; i <= max; i += step) {
-                input.push(i);
-            }
-            return input;
-    };
+    $scope.range = function(min, max, step) { step = step || 1; var input = []; for (var i = min; i <= max; i += step) { input.push(i); } return input; };
         
     $scope.openRnt =  function(img){
           swal({
@@ -219,7 +208,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
           } else {
             swal("¡Compra fallida!","Ha ocurrido un error con tu compra, verifica con tu entidad financiera para mas información", "error");
           }
-        })        
+        })
         $scope.goBack = function() {
           localStorage.setItem("checkOut",null);
             window.history.back();
@@ -241,6 +230,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
       navigator.geolocation.getCurrentPosition(information, funcError);
       function information(e){
         initAutocomplete(e.coords);
+        $rootScope.activities.locationUser = e.coords;
       }
       function funcError(e){
         swal('Opps!','debes permitir tu ubicación para mejorar la experiencia de navegación','error');
@@ -251,7 +241,7 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
         document.getElementById('mapA').style.height = parseInt(screen.height);
         var latLng  = {lat: parseFloat(location.latitude), lng: parseFloat(location.longitude)};
             $scope.map = new google.maps.Map(document.getElementById('mapA'), {
-              zoom: 14,
+              zoom: 12,
               center: latLng,
               styles: helpers.configMap
             });
@@ -273,20 +263,12 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
      function paintMarkers(object,num){
       helpers.createUrl($rootScope.activities[num]._id,$rootScope.activities[num].name);
       var myLatLng = {lat: parseFloat(object.lat), lng: parseFloat(object.lng)};
-      var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: $scope.map,
-        title: object.name,
-        icon: "../img/icons/dplanMarker.png",
-        animation: google.maps.Animation.DROP,
-        draggable: false
-      });
-      var contentString = "<div id='iw-container'><h5><b>"+$rootScope.activities[num].name+"<b></h5><br><div class='iw-content'><p><b>Distancia</b>: Saliendo por la "+$rootScope.activities[num].exitBy+"</p><div style='width:400px;text-align:justify;max-height:115px;overflow:hidden'><p><b>Descripción:</b> "+$rootScope.activities[num].description+"</p></div><p><b>Precio:</b> $"+$rootScope.activities[num].mount+"</p></div><div style='width:400px;height:180px;margin-top:5px;margin-bottom:5px;background-size:cover;background-image:url("+$rootScope.activities[num].url+");'></div><a href='#!"+$rootScope.urlFinal+"' target='_blank'>ver mas</a></div>";
-      var infowindow = new google.maps.InfoWindow({
-          content: contentString
-        });
+      var marker = new google.maps.Marker({ position: myLatLng, map: $scope.map, title: object.name, icon: "../img/icons/dplanMarker.png", animation: google.maps.Animation.DROP, draggable: false });
+      var contentString = "<div id='iw-container'><h5><b>"+$rootScope.activities[num].name+"<b></h5><br><div class='iw-content'><p><b>Ubicación</b>: "+$rootScope.activities[num].location.name+"</p><div style='width:400px;text-align:justify;max-height:115px;overflow:hidden'><p><b>Descripción:</b> "+$rootScope.activities[num].description+"</p></div><p><b>Precio:</b> $"+$rootScope.activities[num].mount+"</p><a href='#!"+$rootScope.urlFinal+"' target='_blank'>ver mas</a></div><div style='width:400px;height:180px;margin-top:5px;margin-bottom:5px;background-size:cover;background-position:center;background-image:url("+$rootScope.activities[num].url+");'></div></div>";
+      var infowindow = new google.maps.InfoWindow({ content: contentString });
       google.maps.event.addListener(marker, 'click', (function(marker,i) {
        return function() {
+        helpers.paintRoute(marker.position.lat(),marker.position.lng(),$scope.map);
         infowindow.open($scope.map, marker);
        }
       })(marker, 0));

@@ -88,6 +88,7 @@
  	 	getInfoTransaction: function(id,callback){
  	 	  getEPaycoTransaction(id)
  	 	  .then(function(res){
+ 	 	  	console.log(res);
  	 	  	callback(res.data.data.original);
  	 	  })
  	 	},
@@ -441,7 +442,34 @@
 				        "color": "#92998d"
 				      }
 				    ]
-				  }]
+				  }],
+			paintRoute: function(lat,lng,mapa){
+			var directionsService, directionsDisplay;
+				directionsService = new google.maps.DirectionsService();
+          		directionsDisplay = new google.maps.DirectionsRenderer();
+            var init = new google.maps.LatLng(lat, lng);
+            var destin = new google.maps.LatLng($rootScope.activities.locationUser.latitude,$rootScope.activities.locationUser.longitude);
+            var request = {
+               origin: init,
+               destination: destin,
+               travelMode: google.maps.DirectionsTravelMode['DRIVING'],
+               unitSystem: google.maps.DirectionsUnitSystem['METRIC'],
+               provideRouteAlternatives: false
+            };
+          directionsDisplay.addListener('directions_changed', function() {
+              var myroute = directionsDisplay.getDirections().routes[0];
+              $rootScope.activities.importantLocation = myroute.legs[0];
+            });
+            directionsService.route(request, function(response, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                  directionsDisplay.setMap(mapa);
+                  document.getElementById("panel_rutaF").innerHTML = "";
+                  directionsDisplay.setPanel($("#panel_rutaF").get(0));
+                  directionsDisplay.setDirections(response);
+              }
+            });
+			}
+			
 		}
 	})
 })();
