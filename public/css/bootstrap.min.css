@@ -21,8 +21,8 @@ body {
   filter: blur(0px);  
 }
 
-.pillsE { background-size: cover; filter: blur(2px); height: 150px;}
-.textE {    text-transform: none; position: absolute;color: #fff;text-align: center;padding: 50px;}
+.pillsE { background-size: cover; filter: blur(2px); height: 30px;}
+.textE {padding-top:9px;color:#fff;padding-left:47%;}
 article,
 aside,
 details,
@@ -6426,13 +6426,14 @@ button.close {
 .carousel-control .icon-prev:before {
   content: '\2039';
 }
+.clsCr {position:absolute;right:10px;top:1px;z-index:9}
 .carousel-control .icon-next:before {
   content: '\203a';
 }
 .carousel-indicators {
   position: absolute;
-  bottom: 5px !important;
-  right: 5%;
+  bottom: -3px !important;
+  right: 15%;
   z-index: 15;
   width: 100%;
   padding-left: 0;

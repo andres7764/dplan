@@ -11,7 +11,7 @@
         	  defered.resolve(result);
       	   })
       	   .catch(function(err){
-      	   	 deferred.reject(err);
+      	   	 defered.reject(err);
       	   })
       	   return promise;
 		}
@@ -24,7 +24,7 @@
         	  defered.resolve(result);
       	   })
       	   .catch(function(err){
-      	   	 deferred.reject(err);
+      	   	 defered.reject(err);
       	   })
       	   return promise;
 		}
@@ -37,7 +37,7 @@
         	  defered.resolve(result.data);
       	   })
       	   .catch(function(err){
-      	   	 deferred.reject(err);
+      	   	 defered.reject(err);
       	   })
       	   return promise;	
 		}
@@ -52,7 +52,9 @@
 		      doPostRequest(data,params)
 		      .then(function(res){
 		      	callback(res);
-		      });
+		      }).catch(function(err){
+                callback(err);
+              })
 			},
 			getReferals: function(URL,value,callback){
 			  doGetReferals(URL,value)
@@ -63,8 +65,8 @@
 		}
 	})
 
-	.factory('payment',function($http,$q){
-		var urlapp = "https://api.secure.payco.co/validation/v1/reference/";
+	.factory('payment',function($http,$q) {
+     var urlapp = "https://secure.epayco.co/validation/v1/reference/";
 	 function getEPaycoTransaction(idEp){
 	   var defered = $q.defer();
 	   var promise = defered.promise;
@@ -74,27 +76,33 @@
           defered.resolve(result);
       	})
       	.catch(function(err){
-      	 deferred.reject(err);
+      	 defered.reject(err);
       	})
       	return promise;
  	 }
  	 function saveReserv(data){
  	 	$http.post('/saveBooking',data)
  	 	.then(function(res){
- 	 	  console.log(res);
- 	 	})
+            console.log(res);
+        }).catch(function(err){/*console.log("Error por: "+err);*/})
  	 }
  	 return {
  	 	getInfoTransaction: function(id,callback){
  	 	  getEPaycoTransaction(id)
  	 	  .then(function(res){
- 	 	  	console.log(res);
- 	 	  	callback(res.data.data.original);
+ 	 	  	callback(res.data.data);
  	 	  })
  	 	},
  	 	createBooking: function(data){
  	 	  saveReserv(data);
- 	 	}
+ 	 	},
+        searchPayment: function(obj,callback){
+          searchByInvoice(obj)
+          .then(function(res){
+            console.log(res);
+            //callback(res);
+          })
+        }
  	 }
 	})
 

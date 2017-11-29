@@ -1,5 +1,4 @@
-var mongoose = require('mongoose'),
-organizators = mongoose.model('organizatorInfo');
+var organizators = require('mongoose').model('organizatorInfo');
 
 exports.createOrganizator = function(req, res) {
     var newOrganizator = new organizators(req.body);

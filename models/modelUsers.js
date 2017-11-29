@@ -3,16 +3,15 @@ var Schema = mongoose.Schema;
 var encryption = require('../helpers/cripto');
 //User collection
 var usuarios = new mongoose.Schema({
-    nombre:         { type: String },
-    correo:         { type: String },
-    cedula:         { type: Number },
-    telefono:       { type: Number },
-    fechaCreate:    { type: Date, default: new Date() },
-    salt:           { type: String },
-    hashPass:       { type: String },
-    notification:   { type: Boolean, default: true },
-    foto:           { type: String, default: 'https://cdn3.iconfinder.com/data/icons/outdoor-and-camping/80/Camping_icons-10-512.png' },
-    rol:            { type: Number, default: 1 }
+    name:         { type: String },
+    mail:         { type: String },
+    phone:        { type: Number },
+    dateCreated:  { type: Date, default: new Date() },
+    pass:         { type: String },
+    notification: { type: Boolean, default: true },
+    city:         { type: Boolean, default: true },
+    foto:         { type: String, default: 'https://cdn3.iconfinder.com/data/icons/outdoor-and-camping/80/Camping_icons-10-512.png' },
+    rol:          { type: Number, default: 1 } //For users 1 Admin, 2 Organizators, 3 Users
 });
 
 usuarios.method({
@@ -24,6 +23,6 @@ usuarios.method({
               return false;
           }
       }
-  });
+});
 
 module.exports = mongoose.model('usuariosmodel', usuarios);

@@ -31,15 +31,15 @@
           templateUrl: 'templates/customPlan.html',
           controller: 'activitiesCtrl'
         })
-        .when('/ver-mapa/',{
+        .when('/ver-mapa/:lat/:lng',{
           templateUrl: 'templates/map.html',
           controller: 'mapCtrl'
         })
+/*        .when('/iniciar-sesion/',{
+          templateUrl: 'templates/login.html',
+          controller:'loginCtrl'
+        })*/
 /*        .when('/ver-mapa/',{
-          templateUrl: 'templates/map.html',
-          controller: 'mapCtrl'
-        })
-        .when('/ver-mapa/',{
           templateUrl: 'templates/map.html',
           controller: 'mapCtrl'
         })                

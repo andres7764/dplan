@@ -15,7 +15,7 @@ var controllerReservas = require('../controllers/controllerReservas');
 var controllerActivities = require('../controllers/controllerActivities');
 var controllerUsers = require('../controllers/controllerUsers');
 var controllerAdmin = require('../controllers/controllerAdmin');
-var controllerOrganizators = require('../controllers/controllerOrganizators')
+var controllerOrganizators = require('../controllers/controllerOrganizators');
 
 var crypto = require('crypto'),
     algorithm = 'aes-256-ctr',
@@ -46,12 +46,11 @@ module.exports = function(app) {
     app.post('/updateUsuario',controllerUsers.updateUsuario);
     app.get('/getUsuarios',controllerUsers.getUsuarios);
     app.get('/getUsuario',controllerUsers.getUsuario);
-    
-    
 
     //Create routes by server rest API ====================================================
     app.post('/saveContact', controllerContact.saveContact);
     app.post('/cancelSuscription', controllerContact.cancelSuscription);
+    app.post('/saveCustomPlan',controllerContact.saveCustomPlan);
     app.post('/updateQtyActivity', controllerActivities.updateQtyActivity);
 
     // Activities
@@ -66,10 +65,9 @@ module.exports = function(app) {
     app.post('/updateReserva',controllerReservas.updateReserva);
     app.get('/getReservas',controllerReservas.getReservas);
     app.get('/getReserva',controllerReservas.getReserva);
-    
+    app.post('/searchInvoice',controllerReservas.searchInvoice);
     // Organizators
     app.post('/saveOrganizator',controllerOrganizators.createOrganizator);
-    
     // Admin
     app.post('/LoginAdmin',controllerAdmin.LoginAdmin);
 
