@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 var encryption = require('../helpers/cripto');
 //User collection
 var usuarios = new mongoose.Schema({
+     _id:         Schema.Types.ObjectId,
     name:         { type: String },
     mail:         { type: String },
     phone:        { type: Number },

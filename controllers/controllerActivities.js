@@ -11,10 +11,16 @@ exports.getActivities = function(req, res) {
 };
 
 exports.getActivity = function(req, res) {
-    Activities.find({'_id':mongoose.Types.ObjectId(req.query.id)},function(err, activity) {
+    Activities.findOne({'_id':mongoose.Types.ObjectId(req.query.id)})
+    .populate('organizatorId')
+    .exec(function(err, response){
+        if (err) { return res.status(500).send(err.message); }
+        console.log(response);
+    })
+  /*  Activities.find({'_id':mongoose.Types.ObjectId(req.query.id)},function(err, activity) {
         if (err) { return res.status(500).send(err.message); }
         return res.status(200).send({activity:activity});
-    });
+    }); */
 };
 
 exports.createActivity = function(req, res) {

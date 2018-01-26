@@ -5,11 +5,11 @@
       <img style="width:400px;background-image:url({{activity.carousel[0]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
       <img style="width:400px;background-image:url({{activity.carousel[1]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
       <img style="width:400px;background-image:url({{activity.carousel[2]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
-      <img style="width:400px;background-image:url({{activity.carousel[3]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
+      <img style="width:400px;background-image:url({{activity.carousel[3]}});height:350px;background-size:cover;background-repeat:no-repeat;"/>
      </div>
     </div>
      <div class="col-md-6 col-sm-6 col-xs-12 completeF" style="padding: 0px 40px 0px 40px">
-        <h1>{{activity.name}}</h1>
+        <h1 style="text-align:left;">{{activity.name}}</h1>
         <hr class="mini" style="width: 130px"><br>
         <p class="iconsP"><i class="fa fa-map-marker"></i><b style="padding-left: 2px;"> Ubicación:</b> {{activity.location.name}} Cundinamarca</p>
         <p class="iconsP"><i class="fa fa-road"></i><b> Salida: </b> {{activity.exitBy}}</p>
@@ -17,7 +17,7 @@
         <p class="iconsP"><i class="fa fa-sort"></i><b style="padding-left: 2px;"> Categoría: </b> {{activity.categories}}</p>
         <p class="iconsP"><i class="fa fa-users"></i><b> Cupo mínimo:</b>&nbsp; {{activity.availablePersons}}</p>
         <p class="iconsP"><i class="fa fa-money"></i><b> Precio:</b>&nbsp; {{activity.mount | currency: $:0}}</p>
-        <p ng-if="activity.rnt !== ''" ng-click="openRnt(activity.imgRnt)"><b>RNT:</b> <abbr title="Registro nacional de turismo">{{activity.rnt}}</abbr> </p>
+        <span ng-if="activity.rnt !== ''" ng-click="openRnt(activity.organizationId.imgCodeRNT)"><b>RNT:</b> <abbr title="Registro nacional de turismo">{{activity.organizationId.codeRNT}}</abbr><a href="#organizador">Organizado por</a></span>
       </div>
      </div>
   </div>
@@ -94,13 +94,13 @@
  <div class="row" style="padding: 0px 40px 0px 20px;">
     <h3>También te puede interesar</h3>
     <hr class="mini" style="width: 220px"><br><br>
-  <div ng-repeat="activity in referals | orderBy: 'order' " class="col-lg-3 col-md-3 col-sm-6 col-xs-12 animated bounceInUp completeF" style="padding-bottom: 30px;">
-   <div class="thumbnail wrp" style="max-height: 270px;cursor:pointer" ng-click="irA(activity._id,activity.name)">
-    <div style="width: 100%;height: 160px;background-size: cover; background-repeat:no-repeat; background-position-y:-10px;background-image: url({{activity.url}});" alt="{{activity.description}}"></div>
-      <div class="caption">
+  <div ng-repeat="activity in referals | orderBy: 'order' " class="col-lg-3 col-md-3 col-sm-6 col-xs-12 animated bounceInUp completeF" >
+   <div class="thumbnail wrp" style="max-height:240px;cursor:pointer;height:240px" ng-click="irA(activity._id,activity.name)">
+    <div style="width:100%;height:240px;background-size:cover;background-repeat:no-repeat; background-position-y:-10px;background-image: url({{activity.url}});" alt="{{activity.description}}"></div>
+      <div class="caption" style="margin-top:-100px;">
         <h3 class="title"><b>{{activity.name}}</b></h3>
         <hr class="mini">
-        <span class="completeF ptop glyphicon" style="color:#555;font-size: 12px!important; height: 60px;overflow: hidden;"> {{activity.distanceTime}}</span>
+        <span class="completeF ptop glyphicon" style="color:#f3f3f3;font-size:13px!important;"> {{activity.distanceTime}}</span>
       </div>
      </div>
   </div>

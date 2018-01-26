@@ -18,8 +18,9 @@ activities = new mongoose.Schema({
     city:                   { type: String  },
     detailplan:             { type: String  },
     mount:                  { type: Number  },
-    organizationId:         { type: String  },
-    order:                  { type: Number, }
+    organizationId:         { type: Schema.Types.ObjectId, ref: 'organizatorInfo' },
+    order:                  { type: Number  },
+    arrival:                { type: String  }
 }); 
 
 

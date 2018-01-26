@@ -42,10 +42,10 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
        var idS = (activity[1].length === 24)?activity[1]:window.location = "/";
 
   activities.doRequest('/getActivity?id='+idS,function(res){
-    $rootScope.activity = res.data.activity[0];
+    $rootScope.activity = res.data.activity;
     $rootScope.lengthPagerImages = $rootScope.activity.carousel.length;
     $scope.tab = 1;
-    document.title = $rootScope.activity.name;
+    document.title = $rootScope.activity.name+" | Dplan.co";
     initAutocomplete($rootScope.activity.location);
     if ($rootScope.activity.legalInfo !== undefined) {
       $rootScope.activity.legalInfo = $rootScope.activity.legalInfo.split("&");

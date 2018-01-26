@@ -1091,7 +1091,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family:"montserrat", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
@@ -4307,7 +4307,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-toggle {
   position: relative;
   float: right;
-  padding: 9px 10px;
+  padding: 5px 7px;
   margin-top: 20px;
   margin-right: 20px;
   margin-bottom: 8px;
@@ -5049,8 +5049,8 @@ a.thumbnail.active {
   border-color: #337ab7;
 }
 .thumbnail .caption {
-  padding: 9px;
-  color: #333;
+  padding-left: 9px;
+  color: #333;  
 }
 .alert {
   padding: 15px;
