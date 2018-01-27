@@ -1,116 +1,96 @@
-<div class="container-fluid"> 
+<div class="container-fluid">
   <div class="row" style="padding-top:110px">
-    <div class="col-md-6 col-sm-6 col-xs-12" style="padding: 10px 10px 0px 20px">
+    <div class="col-md-6 col-sm-6 col-xs-12" style="padding:0px 10px 0px 60px">
+      <h1 style="text-align:left;">{{activity.name}}</h1>
+      <hr class="mini" style="width: 130px"><br>
+      <p class="iconsP"><i class="fa fa-map-marker"></i><b style="padding-left: 2px;"> Ubicación:</b> {{activity.location.name}} Cundinamarca</p>
+      <p class="iconsP"><i class="fa fa-road"></i><b> Salida: </b> {{activity.exitBy}}</p>
+      <p class="iconsP"><i class="fa fa-clock-o"></i><b style="padding-left: 2px;"> Tiempo aprox: </b> {{activity.distanceTime}}</p>
+      <p class="iconsP"><i class="fa fa-sort"></i><b style="padding-left: 2px;"> Categoría: </b> {{activity.categories}}</p>
+      <p class="iconsP"><i class="fa fa-users"></i><b> Cupo mínimo:</b>&nbsp; {{activity.availablePersons}}</p>
+      <p class="iconsP"><i class="fa fa-money"></i><b> Precio:</b>&nbsp; {{activity.mount | currency: $:0}} por persona</p>
+      <span ng-if="activity.rnt !== ''" ng-click="openRnt(activity.organizationId.imgCodeRNT)"><b>RNT:</b> <abbr title="Registro nacional de turismo">{{activity.organizationId.codeRNT}}</abbr><a href="#organizador"> Organizado por</a></span>
+      <h4 style="margin-top: 40px"><b>Que harás</b></h4>
+      <div style="padding-right:40px">{{activity.description}} </div><br>
+      <b>El plan incluye:</b>
+      <div class="tab-pane" style="padding: 7px;text-align: justify;">
+        <div ng-repeat="item in activity.detailPlan track by $index">{{item}}</div><br>
+      </div>
+      <h4 style="margin-top: 40px"><b>Ten en cuenta</b></h4>
+      <div style="padding-top: 3px; text-align: justify-all;" ng-repeat="items in activity.legalInfo track by $index">{{items}}</div>
+      <h4 style="margin-top: 40px"><b>Como llegar</b></h4>
+      <div style="text-align:justify-all;"> {{activity.arrival}} </div>
+      <br>
+      <div>
+        <b>Para ver como llegar desde tu ubicación haz click <a href="{{activity.urlLocation}}" target="_blank">aquí</a></b>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-12" style="padding: 55px 40px 0px 20px;">
       <div class="owl-carousel" id="insertCarousel">
-      <img style="width:400px;background-image:url({{activity.carousel[0]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
-      <img style="width:400px;background-image:url({{activity.carousel[1]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
-      <img style="width:400px;background-image:url({{activity.carousel[2]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
-      <img style="width:400px;background-image:url({{activity.carousel[3]}});height:350px;background-size:cover;background-repeat:no-repeat;"/>
-     </div>
-    </div>
-     <div class="col-md-6 col-sm-6 col-xs-12 completeF" style="padding: 0px 40px 0px 40px">
-        <h1 style="text-align:left;">{{activity.name}}</h1>
-        <hr class="mini" style="width: 130px"><br>
-        <p class="iconsP"><i class="fa fa-map-marker"></i><b style="padding-left: 2px;"> Ubicación:</b> {{activity.location.name}} Cundinamarca</p>
-        <p class="iconsP"><i class="fa fa-road"></i><b> Salida: </b> {{activity.exitBy}}</p>
-        <p class="iconsP"><i class="fa fa-clock-o"></i><b style="padding-left: 2px;"> Tiempo aprox: </b> {{activity.distanceTime}}</p>
-        <p class="iconsP"><i class="fa fa-sort"></i><b style="padding-left: 2px;"> Categoría: </b> {{activity.categories}}</p>
-        <p class="iconsP"><i class="fa fa-users"></i><b> Cupo mínimo:</b>&nbsp; {{activity.availablePersons}}</p>
-        <p class="iconsP"><i class="fa fa-money"></i><b> Precio:</b>&nbsp; {{activity.mount | currency: $:0}}</p>
-        <span ng-if="activity.rnt !== ''" ng-click="openRnt(activity.organizationId.imgCodeRNT)"><b>RNT:</b> <abbr title="Registro nacional de turismo">{{activity.organizationId.codeRNT}}</abbr><a href="#organizador">Organizado por</a></span>
+        <img style="width:400px;background-image:url({{activity.carousel[0]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
+        <img style="width:400px;background-image:url({{activity.carousel[1]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
+        <img style="width:400px;background-image:url({{activity.carousel[2]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
+        <img style="width:400px;background-image:url({{activity.carousel[3]}});height:350px;background-size:cover;background-repeat:no-repeat;"/>
       </div>
-     </div>
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-xs-12">
+        <h4><b>Selecciona el día:</b></h4>
+          <div class="cal">
+            <div class="cal__header">
+              <button id="previous" data-calendar-toggle="previous"><svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg></button>
+              <div class="cal__header__label" data-calendar-label="month">
+                Noviembre 2017
+              </div><button id="next" data-calendar-toggle="next"> <svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg></button>
+          </div>
+          <div class="cal__week">
+            <span>Lun</span> <span>Mar</span><span>Mie</span> <span>Jue</span> <span>Vie</span> <span>Sab</span> <span>Dom</span>
+          </div>
+          <div class="cal__body" id="month" data-calendar-area="month"></div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-xs-6" style="padding: 10px">
+        
+        <h4 style="margin-top:0px"><b>Cupos:</b></h4>
+        <select class="form-control" ng-change="checkCupo($index)" ng-model="vm.cupos[$index]" id="sel1">
+          <option ng-repeat="n in range(activity.availablePersons,20)">{{n}}</option>
+        </select>
+        <br>
+        <input class="form-control" id="dateSelected" placeholder="fecha Seleccionada">
+        <div style="padding-top: 20px;text-align: center;color: #64dd17">
+          <h4><b>{{activity.total | currency: $:0}}</b></h4>
+        </div>
+        <button type="button" id="clickBP" class="animated tada btn btnReserve btn-block" ng-click="reservA($index)" style="background:#64dd17!important;margin-top:20px;height:50px">Comprar</button>
+      </div>
+    </div>
   </div>
-    <div class="row">
-      <div class="col-lg-6 col-md-6 col-xs-12" style="padding: 0px 40px 0px 20px;">
-       <h3>Compra tu plan</h3>
-        <hr class="mini" style="width: 220px"><br><br>
-       <div class="row">
-          <div class="col-lg-8 col-md-8 col-xs-12">
-            <label for="date">Selecciona el día:</label>
-            <div class="cal">
-              <div class="cal__header">
-                <button id="previous" data-calendar-toggle="previous"><svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path></svg></button>
-                <div class="cal__header__label" data-calendar-label="month">
-                  Noviembre 2017
-                </div><button id="next" data-calendar-toggle="next"> <svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path></svg></button>
-              </div>
-              <div class="cal__week">
-                <span>Lun</span> <span>Mar</span><span>Mie</span> <span>Jue</span> <span>Vie</span> <span>Sab</span> <span>Dom</span>
-              </div>
-              <div class="cal__body" id="month" data-calendar-area="month"></div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4 col-xs-6" style="padding: 10px">
-            <label for="sel1">Cupos:</label>
-            <select class="form-control" ng-change="checkCupo($index)" ng-model="vm.cupos[$index]" id="sel1">
-             <option ng-repeat="n in range(activity.availablePersons,20)">{{n}}</option>
-            </select>
-            <br>
-            <input class="form-control" id="dateSelected" placeholder="fecha Seleccionada">           
-            <div style="padding-top: 20px;text-align: center;color: #64dd17">
-              <h4><b>{{activity.total | currency: $:0}}</b></h4>
-            </div>
-            <button type="button" id="clickBP" class="animated tada btn btnReserve btn-block" ng-click="reservA($index)" style="background: #64dd17 !important; margin-top: 20px">Comprar</button>            
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-6 col-xs-12" style="font-size: 15px!important;overflow: hidden;padding: 0px 40px 0px 20px;text-align: justify;">
-        <h3>Información</h3>
-        <hr class="mini" style="width: 220px"><br><br>
-        <ul class="nav nav-tabs">
-          <li class="active"><a ng-click="tab = 1" data-toggle="tab">¿Qué haras?</a></li>
-          <li><a ng-click="tab = 2" data-toggle="tab">Ten en cuenta</a></li>
-          <li><a ng-click="tab = 4" data-toggle="tab">¿Cómo llegar?</a></li>
-        </ul><br>
-       <div class="tab-content">
-        <div class="tab-pane active" ng-show="tab === 1">
-          <div>{{activity.description}} </div><br>
-          <b>El plan incluye:</b>
-            <div class="tab-pane" style="padding: 7px;text-align: justify;">
-              <div ng-repeat="item in activity.detailPlan track by $index">{{item}}</div><br>
-            </div>
-        </div>
-       </div>
-        <div class="tab-pane" ng-show="tab === 2" style="padding: 7px;text-align: justify;">
-          <div style="padding-top: 3px; text-align: justify-all;" ng-repeat="items in activity.legalInfo track by $index">{{items}}</div><br>
-        </div>
-        <div ng-show="tab === 4" class="tab-pane" style="padding: 7px;text-align: justify;" id="CLlegr">
-          <div> {{activity.arrival}} </div>
-          <br>
-          <div>
-            <b>Para ver como llegar desde tu ubicación haz click <a class="btn btn-success" href="{{activity.urlLocation}}" target="_blank">aquí</a></b>
-          </div>
-        </div>
-      </div>
-    </div>
-<div class="row" style="padding: 0px 40px 0px 20px;">
-  <h3>Punto de encuentro</h3>
-  <hr class="mini" style="width: 220px"><br><br>
- <div class="tab-pane active" id="map" style="width: 100% !important;height: 300px !important;margin-bottom: 10px;"></div>
 </div>
- <div class="row" style="padding: 0px 40px 0px 20px;">
-    <h3>También te puede interesar</h3>
-    <hr class="mini" style="width: 220px"><br><br>
-  <div ng-repeat="activity in referals | orderBy: 'order' " class="col-lg-3 col-md-3 col-sm-6 col-xs-12 animated bounceInUp completeF" >
-   <div class="thumbnail wrp" style="max-height:240px;cursor:pointer;height:240px" ng-click="irA(activity._id,activity.name)">
+</div>
+<div class="row" style="padding: 0px 40px 0px 60px;">
+<h3>Punto de encuentro</h3>
+<hr class="mini" style="width: 220px"><br><br>
+<div class="tab-pane active" id="map" style="width:50% !important;height: 300px !important;margin-bottom: 10px;"></div>
+</div>
+<div class="row" style="padding:55px 40px 0px 60px;">
+<h3>También te puede interesar</h3>
+<hr class="mini" style="width: 220px"><br><br>
+<div ng-repeat="activity in referals | orderBy: 'order' " class="col-lg-3 col-md-3 col-sm-6 col-xs-12 animated bounceInUp completeF" >
+  <div class="thumbnail wrp" style="max-height:240px;cursor:pointer;height:240px" ng-click="irA(activity._id,activity.name)">
     <div style="width:100%;height:240px;background-size:cover;background-repeat:no-repeat; background-position-y:-10px;background-image: url({{activity.url}});" alt="{{activity.description}}"></div>
-      <div class="caption" style="margin-top:-100px;">
-        <h3 class="title"><b>{{activity.name}}</b></h3>
-        <hr class="mini">
-        <span class="completeF ptop glyphicon" style="color:#f3f3f3;font-size:13px!important;"> {{activity.distanceTime}}</span>
-      </div>
-     </div>
+    <div class="caption" style="margin-top:-100px;">
+      <h3 class="title"><b>{{activity.name}}</b></h3>
+      <hr class="mini">
+      <span class="completeF ptop glyphicon" style="color:#f3f3f3;font-size:13px!important;"> {{activity.distanceTime}}</span>
+    </div>
   </div>
- </div>
 </div>
-
+</div>
+</div>
 <script type="text/javascript">
-  $('.owl-carousel').owlCarousel({margin:10,loop:true,autoWidth:true,nav:true,})
-  vanillacalendar.init();
-    var a = ["owl-prev","owl-next","owl-nav"];
-    for(b=0;b<=2;b++){var x = document.getElementsByClassName(a[b])[0];if(b===2){
-         x.style.textAlign = "center";}else{x.innerHTML = (b===0)?"Anterior":"Siguiente";x.setAttribute("class","impr");}}
+$('.owl-carousel').owlCarousel({margin:10,loop:true,autoWidth:true,nav:true,})
+vanillacalendar.init();
+var a = ["owl-prev","owl-next","owl-nav"];
+for(b=0;b<=2;b++){var x = document.getElementsByClassName(a[b])[0];if(b===2){
+x.style.textAlign = "center";}else{x.innerHTML = (b===0)?"Anterior":"Siguiente";x.setAttribute("class","impr");}}
 </script>
