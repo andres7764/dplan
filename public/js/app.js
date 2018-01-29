@@ -62,6 +62,28 @@ cviaja.controller('activityCtrl', ['activities','helpers','$scope','$routeParams
     } else { 
       $rootScope.catFind = $rootScope.activity.categories;
     }
+    //Create the gallery
+    var a = b = "";
+    for (var i = 0; i < $rootScope.activity.carousel.length; i++) {
+      a += "<div class='sp-slide'><img style='width:100%;height:400px;background-position:center;' src='"+$rootScope.activity.carousel[i]+"' data-small='"+$rootScope.activity.carousel[i]+"' data-medium='"+$rootScope.activity.carousel[i]+"'/></div>";
+      b += "<img class='sp-thumbnail' src='"+$rootScope.activity.carousel[i]+"'/>";
+    }
+    document.getElementById("thumbnailsC").innerHTML = b;
+    document.getElementById("addCarousel").innerHTML = a;
+    $('#example3').sliderPro({
+      width: 600,
+      height: 400,
+      fade: true,
+      arrows: true,
+      buttons: false,
+      fullScreen: true,
+      shuffle: true,
+      smallSize: 500,
+      mediumSize: 500,
+      largeSize: 500,
+      thumbnailArrows: false,
+      autoplay: true
+    });
 
     activities.getReferals('/getReferals',{'categories':$rootScope.catFind},function(res){ $rootScope.referals = res.data; });
 

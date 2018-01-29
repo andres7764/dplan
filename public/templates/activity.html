@@ -24,14 +24,18 @@
       <div>
         <b>Para ver como llegar desde tu ubicación haz click <a href="{{activity.urlLocation}}" target="_blank">aquí</a></b>
       </div>
+      <div class="row" style="padding: 40px 40px 0px 00px;">
+        <h4><b>Punto de encuentro</b></h4>
+        <div class="tab-pane active" id="map" style="width:100% !important;height:300px!important;margin-top:10px;"></div>
+      </div>
     </div>
     <div class="col-lg-6 col-md-6 col-xs-12" style="padding: 55px 40px 0px 20px;">
-      <div class="owl-carousel" id="insertCarousel">
-        <img style="width:400px;background-image:url({{activity.carousel[0]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
-        <img style="width:400px;background-image:url({{activity.carousel[1]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
-        <img style="width:400px;background-image:url({{activity.carousel[2]}});height:350px;background-size:cover; background-repeat: no-repeat;"/>
-        <img style="width:400px;background-image:url({{activity.carousel[3]}});height:350px;background-size:cover;background-repeat:no-repeat;"/>
-      </div>
+    <div id="example3" class="slider-pro">
+      <div id="addCarousel" class="sp-slides">
+    </div>
+
+    <div id="thumbnailsC" class="sp-thumbnails"></div>
+    </div>
       <div class="row">
         <div class="col-lg-8 col-md-8 col-xs-12">
         <h4><b>Selecciona el día:</b></h4>
@@ -67,11 +71,7 @@
   </div>
 </div>
 </div>
-<div class="row" style="padding: 0px 40px 0px 60px;">
-<h3>Punto de encuentro</h3>
-<hr class="mini" style="width: 220px"><br><br>
-<div class="tab-pane active" id="map" style="width:50% !important;height: 300px !important;margin-bottom: 10px;"></div>
-</div>
+
 <div class="row" style="padding:55px 40px 0px 60px;">
 <h3>También te puede interesar</h3>
 <hr class="mini" style="width: 220px"><br><br>
@@ -88,9 +88,5 @@
 </div>
 </div>
 <script type="text/javascript">
-$('.owl-carousel').owlCarousel({margin:10,loop:true,autoWidth:true,nav:true,})
-vanillacalendar.init();
-var a = ["owl-prev","owl-next","owl-nav"];
-for(b=0;b<=2;b++){var x = document.getElementsByClassName(a[b])[0];if(b===2){
-x.style.textAlign = "center";}else{x.innerHTML = (b===0)?"Anterior":"Siguiente";x.setAttribute("class","impr");}}
+  vanillacalendar.init();
 </script>
