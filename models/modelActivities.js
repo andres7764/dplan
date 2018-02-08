@@ -1,4 +1,5 @@
-var mongoose = require('mongoose'),
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 //User collection
 activities = new mongoose.Schema({

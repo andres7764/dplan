@@ -6,7 +6,9 @@ organizatorInfo = new mongoose.Schema({
     nameOrganization:    {type: String},
     idUsersResponsibles: {type: Array },
     codeRNT:             {type: String},
-    imgCodeRNT:          {type: String}
+    imgCodeRNT:          {type: String},
+    imgLogo: 			 {type: String},
+    description: 		 {type: String}
 });
 
 module.exports = mongoose.model('organizatorInfo',organizatorInfo);

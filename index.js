@@ -18,8 +18,8 @@ var config = require('./config/config')[env];
 mongoose.connect(config.db);
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
-app.use(express.static('public'));
+//app.set('views', __dirname + '/views');
+//app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json({type: 'application/json'})); 
 app.use(methodOverride());
@@ -43,4 +43,4 @@ require('./config/passport')();
 // listen (start app with node server.js) ===========================================
 //http.listen(8080, argv.fe_ip);
 http.listen(config.port);
-console.log('App listening on port 5500');
+console.log('App listening on port' +config.port);

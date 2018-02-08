@@ -4,19 +4,21 @@ var Activities =  mongoose.model('activitiesmodel');
 
 //POST - Insert a new user in the Collection
 exports.getActivities = function(req, res) {
-    Activities.find({isActive: true},'name description mount url categories location exitBy',function(err, activities) {
+    Activities.find({isActive: true},'name description mount url categories location exitBy order',function(err, activities) {
         if (err) { return res.status(500).send(err.message); }
         return res.status(200).send({activities: activities});
     });
 };
 
 exports.getActivity = function(req, res) {
-    Activities.findOne({'_id':mongoose.Types.ObjectId(req.query.id)})
-    .populate('organizatorId')
-    .exec(function(err, response){
+    Activities
+    .findOne({'_id':req.query.id})
+    .populate('organizationId')
+    .exec(function(err, activity){
         if (err) { return res.status(500).send(err.message); }
-        console.log(response);
+        return res.status(200).send({activity:activity});
     })
+    //Activities.findOne({'_id':mongoose.Types.ObjectId(req.query.id)})
   /*  Activities.find({'_id':mongoose.Types.ObjectId(req.query.id)},function(err, activity) {
         if (err) { return res.status(500).send(err.message); }
         return res.status(200).send({activity:activity});

@@ -29,7 +29,6 @@ function decrypt(text) {
 }
 
 module.exports = function(app) {
-
     /* Generar contraseña */
     function generar(longitud)
     {
@@ -73,16 +72,16 @@ module.exports = function(app) {
 
     // application web ======================================================================
     app.get('/', function(req, res) {
-        res.render('index.ejs');
+       // res.render('index.ejs');
     });
     
     // application admin
     app.get('/admin', function(req, res) {
-        res.render('admin.ejs');
+       // res.render('admin.ejs');
     });
     
     app.get('/login', function(req,res){
-        res.render('login.ejs');
+       // res.render('login.ejs');
     });
 
     app.get('*', function (req, res) {

@@ -1,51 +1,28 @@
-module.exports = function (grunt) {
-  grunt.initConfig({
-    pkg: grunt.file.readJSON("package.json"),
-
-    compress: {
-      options: {
-        mode: 'gzip'
-      },
-      css: {
-        files: [
+module.exports = function(grunt) 
+{
+  // Project configuration.
+  grunt.initConfig
+  ({
+    imagemin: 
+    {
+      dynamic: 
+      {
+        files: 
+        [
           {
             expand: true,
-            cwd: "./public/css/",
-            src: ["**/*.css"],
-            dest: "./public/cssmin/"
-          }
-        ]
-      },
-      html: {
-        files: [
-          {
-            expand: true,
-            cwd: "./public/templates/",
-            src: ["**/*.html"],
-            dest: "./public/templatesmin/"
-          },
-          {
-            expand: true,
-            cwd: "./views/",
-            src: ["**/*.ejs"],
-            dest: "./viewsmin/"
-          }
-        ]
-      },
-      js: {
-        files: [
-          {
-            expand: true,
-            cwd: "./public/js/",
-            src: ["**/*.js"],
-            dest: "./public/jsmin/"
+            cwd: './dist/', //Va a buscar dentro de la carpeta src
+            src: ['**/*.{png,jpg,gif}'], //Se buscarán todos los archivos que terminen con esa extensión
+            dest: 'compress/' //Va a guardar las nuevas imágenes dentro de la carpeta "dest"
           }
         ]
       }
     }
   });
 
-  grunt.loadNpmTasks("grunt-contrib-compress");
+  // These plugins provide necessary tasks.
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
 
-  grunt.registerTask("default", ["compress"]);
+  // Default task.
+  grunt.registerTask('optimizeimage', ['imagemin']);
 };

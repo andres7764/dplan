@@ -1,14 +1,16 @@
 {
-  "name": "CViajaDeLujo",
-  "description": "Main landing page",
+  "name": "Dplan",
+  "description": "Page with all info of dplan.co unique plans near to Bogota",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.1.4",
     "body-parser": "*",
     "connect-multiparty": "^2.0.0",
     "cookie-parser": "^1.4.3",
     "crypto": "0.0.3",
+    "ejs": "^2.5.7",
     "express": "*",
     "express-session": "^1.15.3",
     "http": "*",
@@ -21,6 +23,8 @@
     "sendgrid": "*"
   },
   "devDependencies": {
-    "grunt-contrib-compress": "^1.4.3"
+    "grunt-contrib-compress": "^1.4.3",
+    "grunt-contrib-imagemin": "^2.0.1",
+    "grunt-contrib-uglify": "^3.1.0"
   }
 }
